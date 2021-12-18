@@ -351,8 +351,10 @@
     <!-- loader end -->
 
 
-    <!-- header start -->
-    <header class="header-style-5 color-style" id="sticky-header">
+ <?php include 'header.php'; ?>
+
+   <!-- header start -->
+   <header class="header-style-5 color-style" id="sticky-header">
         <div class="mobile-fix-option"></div>
         <div class="top-header top-header-theme">
             <div class="container">
@@ -861,15 +863,7 @@
                                     </li>
                                     <li><a href="#">pages</a>
                                         <ul>
-                                            <li>
-                                                <a href="#">vendor</a>
-                                                <ul>
-                                                    <li><a href="vendor-dashboard.html">vendor dashboard</a>
-                                                    </li>
-                                                    <li><a href="vendor-profile.html">vendor profile</a></li>
-                                                    <li><a href="become-vendor.html">become vendor</a></li>
-                                                </ul>
-                                            </li>
+                                             
                                             <li>
                                                 <a href="#">account</a>
                                                 <ul>
@@ -964,8 +958,6 @@
         </div>
     </header>
     <!-- header end -->
-
-
     <!-- Home slider -->
     <section class="pt-0 height-65">
         <div class="slider-animate home-slider">
