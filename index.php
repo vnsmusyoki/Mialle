@@ -11,19 +11,21 @@
     <meta name="author" content="multikart">
     <link rel="icon" href="../assets/images/favicon/22.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/favicon/22.png" type="image/x-icon">
-    <title>Multikart - Multi-purpopse E-commerce Html Template</title>
+    <title>Mialle -  Second Hand Products</title>
 
     <!--Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> -->
 
     <!-- Icons -->
-    <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
-
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css"> -->
+    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+  <link href="fontawesome/css/brands.css" rel="stylesheet">
+  <link href="fontawesome/css/solid.css" rel="stylesheet">
     <!--Slick slider css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/slick.css">
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/slick-theme.css">
@@ -56,7 +58,7 @@
                             <div class="header-contact">
                                 <ul>
                                     <li>Welcome to Our store Multikart</li>
-                                    <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 - 7890</li>
+                                    <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us: +254-712-581-281</li>
                                 </ul>
                             </div>
                         </div>
