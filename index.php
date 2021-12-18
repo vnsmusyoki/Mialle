@@ -10,7 +10,7 @@
     <meta name="author" content="multikart">
     <link rel="icon" href="../assets/images/favicon/20.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/favicon/20.png" type="image/x-icon">
-    <title>Multikart - Multi-purpopse E-commerce Html Template</title>
+    <title>Mialle - Second Hand Products</title>
 
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
@@ -22,23 +22,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
     <!-- Icons -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
 
     <!--Slick slider css-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/slick-theme.css">
 
     <!-- Animate icon -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/animate.css">
 
     <!-- Themify icon -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/themify-icons.css">
 
     <!-- Bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
 
     <!-- Theme css -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 
 </head>
@@ -66,8 +66,8 @@
                                 </li>
                                 <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i> My Account
                                     <ul class="onhover-show-div">
-                                        <li><a href="login.html">Login</a></li>
-                                        <li><a href="register.html">register</a></li>
+                                        <li><a href="login.php">Login</a></li>
+                                        <li><a href="register.php">register</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -87,7 +87,7 @@
                                     </a>
                                 </div>
                                 <div class="brand-logo">
-                                    <a href="index.html"><img src="../assets/images/icon/logo/29.png"
+                                    <a href="index.php"><img src="assets/images/icon/logo/29.png"
                                             class="img-fluid blur-up lazyload" alt=""></a>
                                 </div>
                             </div>
@@ -104,13 +104,13 @@
                                     <div class="icon-nav d-none d-sm-block">
                                         <ul>
                                             <li class="onhover-div mobile-search d-xl-none d-inline-block">
-                                                <div><img src="../assets/images/icon/search.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-search"></i></div>
+                                                <div><img src="assets/images/icon/search.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-search"></i></div>
                                             </li>
                                             <li class="onhover-div mobile-setting">
-                                                <div><img src="../assets/images/icon/setting.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-settings"></i></div>
+                                                <div><img src="assets/images/icon/setting.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-settings"></i></div>
                                             </li>
                                             <li class="onhover-div mobile-cart">
-                                                <div><img src="../assets/images/icon/cart.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-shopping-cart"></i></div>
+                                                <div><img src="assets/images/icon/cart.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-shopping-cart"></i></div>
                                                 <span class="cart_qty_cls">2</span></li>
                                         </ul>
                                     </div>
@@ -131,13 +131,12 @@
                                         <li>
                                             <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                                         </li>
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="index.php">Home</a></li>
                                         <li class="mega">
-                                            <a href="#">feature <div class="lable-nav">new</div></a></li>
-                                        <li><a href="#">shop</a> </li>
-                                        <li><a href="#">product</a></li>
-                                        <li><a href="#">pages</a></li>
-                                        <li><a href="#">blog</a></li>
+                                            <a href="#">All Products</a></li>
+                                        <li><a href="#">Shop Now</a> </li>
+                                        <li><a href="#">My Account</a></li>
+                                        <li><a href="#">Nearby Products</a></li> 
                                     </ul>
                                 </nav>
                             </div>
@@ -228,8 +227,8 @@
                             </li>
                             <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i> My Account
                                 <ul class="onhover-show-div">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">register</a></li>
+                                    <li><a href="login.php">Login</a></li>
+                                    <li><a href="register.php">register</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -266,33 +265,22 @@
                                 <div class="icon-nav">
                                     <ul>
                                         <li class="onhover-div mobile-search d-xl-none d-inline-block">
-                                            <div><img src="../assets/images/icon/search.png" onclick="openSearch()" class="img-fluid blur-up lazyload" alt=""> <i class="ti-search" onclick="openSearch()"></i></div>
+                                            <div><img src="assets/images/icon/search.png" onclick="openSearch()" class="img-fluid blur-up lazyload" alt=""> <i class="ti-search" onclick="openSearch()"></i></div>
                                         </li>
                                         <li class="onhover-div mobile-setting">
-                                            <div><img src="../assets/images/icon/setting.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-settings"></i></div>
+                                            <div><img src="assets/images/icon/setting.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-settings"></i></div>
                                             <div class="show-div setting">
-                                                <h6>language</h6>
-                                                <ul>
-                                                    <li><a href="#">english</a></li>
-                                                    <li><a href="#">french</a></li>
-                                                </ul>
-                                                <h6>currency</h6>
-                                                <ul class="list-inline">
-                                                    <li><a href="#">euro</a></li>
-                                                    <li><a href="#">rupees</a></li>
-                                                    <li><a href="#">pound</a></li>
-                                                    <li><a href="#">doller</a></li>
-                                                </ul>
+                                                 
                                             </div>
                                         </li>
                                         <li class="onhover-div mobile-cart">
-                                            <div><img src="../assets/images/icon/cart.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-shopping-cart"></i></div>
+                                            <div><img src="assets/images/icon/cart.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-shopping-cart"></i></div>
                                             <span class="cart_qty_cls">2</span>
                                             <ul class="show-div shopping-cart">
                                                 <li>
                                                     <div class="media">
                                                         <a href="#"><img alt="" class="me-3"
-                                                                src="../assets/images/fashion/product/1.jpg"></a>
+                                                                src="assets/images/fashion/product/1.jpg"></a>
                                                         <div class="media-body">
                                                             <a href="#">
                                                                 <h4>item name</h4>
@@ -306,7 +294,7 @@
                                                 <li>
                                                     <div class="media">
                                                         <a href="#"><img alt="" class="me-3"
-                                                                src="../assets/images/fashion/product/2.jpg"></a>
+                                                                src="assets/images/fashion/product/2.jpg"></a>
                                                         <div class="media-body">
                                                             <a href="#">
                                                                 <h4>item name</h4>
@@ -2422,39 +2410,7 @@
     <!-- search section -->
 
 
-    <!--modal popup start-->
-    <div class="modal fade bd-example-modal-lg newyear-modal" id="newyear" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container-fluid p-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="modal-bg">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <div class="content">
-                                        <h1>Happy</h1>
-                                        <h1>new year</h1>
-                                        <h2>sale</h2>
-                                        <div class="discount">get
-                                            <span>30%</span> off
-                                            <span class="plus">+</span>
-                                            <span>FREE SHIPPING</span>
-                                        </div>
-                                        <div class="btn btn-solid">31 DEC - 10th JAN</div>
-                                        <p>*check shipping conditions in our website</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--modal popup end-->
+
 
 
     <!-- Quick-view modal popup start-->
@@ -3141,35 +3097,35 @@
 
 
     <!-- latest jquery-->
-    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
 
     <!-- slick js-->
-    <script src="../assets/js/slick.js"></script>
-    <script src="../assets/js/slick-animation.min.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/slick-animation.min.js"></script>
 
     <!-- menu js-->
-    <script src="../assets/js/menu.js"></script>
-    <script src="../assets/js/sticky-menu.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/sticky-menu.js"></script>
 
     <!-- lazyload js-->
-    <script src="../assets/js/lazysizes.min.js"></script>
+    <script src="assets/js/lazysizes.min.js"></script>
 
     <!-- feather icon js-->
-    <script src="../assets/js/feather.min.js "></script>
+    <script src="assets/js/feather.min.js "></script>
 
     <!-- Bootstrap js-->
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 
     <!-- Timer js-->
-    <script src="../assets/js/timer.js"></script>
+    <script src="assets/js/timer.js"></script>
 
     <!-- Bootstrap Notification js-->
-    <script src="../assets/js/bootstrap-notify.min.js"></script>
+    <script src="assets/js/bootstrap-notify.min.js"></script>
 
     <!-- Theme js-->
-    <script src="../assets/js/theme-setting.js"></script>
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/custom-slick-animated.js"></script>
+    <script src="assets/js/theme-setting.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/custom-slick-animated.js"></script>
 
 
     <script>
