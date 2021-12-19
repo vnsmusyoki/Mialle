@@ -1,5 +1,5 @@
 <?php include 'customer.php'; ?>
-
+<?php $product_name =  $product_price = $product_description = $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +32,14 @@
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="../assets/js/toastr.min.js"></script>
     <script src="../assets/js/toastr-options.js"></script>
+    <script src="assets/js/images-view.js"></script>
+    <style>
+        .imgGallery img {
+            padding: 8px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -72,7 +80,7 @@
                             <div class="col-lg-6">
                                 <div class="page-header-left">
                                     <h3>Product List
-                                        <small>Uploaded Products</small>
+                                        <small>Upload New Product</small>
                                     </h3>
                                 </div>
                             </div>
@@ -91,7 +99,86 @@
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
                     <div class="row products-admin ratio_asos">
-                            
+                        <div class="col-xl-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-body product-box">
+                                    <form action="" enctype="multipart/form-data" method="POST" action="">
+                                        <?php
+                                        if (isset($_POST["uploadproduct"])) {
+                                            require '../functions/customer/uploadproduct.php';
+                                        }
+                                        ?>
+                                        <?php echo $message ?>
+                                        <div class="form-row row">
+                                            <div class="col-md-6 mb-4">
+                                                <label for="name">Product Name</label>
+                                                <input type="text" class="form-control" id="fname" placeholder="Write Product Name here" name="product_name" value="<?php echo $product_name; ?>" style="text-transform:capitalize;">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6 mb-4">
+                                                <label for="review">Product Price</label>
+                                                <input type="number" min="1" class="form-control" id="lname" placeholder="Enter Product price" name="product_price" value="<?php echo $product_price; ?>">
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="form-row row">
+                                            <div class="col-md-6 mb-4">
+                                                <label for="name">Product Category</label>
+                                                <select name="product_sub_category" id="" class="form-control">
+                                                    <option value="">Select product category</option>
+                                                    <?php
+                                                    $categories = "SELECT * FROM `categories`";
+                                                    $querycategory = mysqli_query($conn, $categories);
+                                                    while ($fetch = mysqli_fetch_assoc($querycategory)) {
+                                                        $categoryname = $fetch['category_name'];
+                                                        $categoryid = $fetch['category_id'];
+                                                        echo "<option value='$categoryid'>$categoryname</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6 mb-4">
+                                                <label for="review">Product Images</label>
+                                                <input type="file" class="form-control" id="chooseFile" placeholder="Upload Product Images" name="picture[]" multiple>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="form-row row">
+                                            <div class="col-md-12 mb-4">
+                                                <label for="name">Product Sub category</label>
+                                                <select name="product_category" id="" class="form-control">
+                                                    <option value="">Select product sub category</option>
+                                                    <?php
+                                                    $subcategories = "SELECT * FROM `sub_categories`";
+                                                    $querysubcategory = mysqli_query($conn, $subcategories);
+                                                    while ($fetch = mysqli_fetch_assoc($querysubcategory)) {
+                                                        $categoryname = $fetch['sub_category_name'];
+                                                        $categoryid = $fetch['sub_category_id'];
+                                                        echo "<option value='$categoryid'>$categoryname</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-row row mb-5">
+                                            <div class="col-md-12">
+                                                <label for="name">Product Description</label>
+                                                <textarea name="product_description" class="form-control" id="" cols="30" rows="10"><?php echo $product_description; ?></textarea>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="imgGallery">
+                                            <!-- image preview -->
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-solid w-auto" name="uploadproduct">Upload Product</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Container-fluid Ends-->

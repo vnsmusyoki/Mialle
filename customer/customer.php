@@ -12,8 +12,8 @@ if (!isset($_SESSION['customer'])) {
         while ($fetch = mysqli_fetch_assoc($queryemail)) {
             $globalusername = $fetch['login_username'];
             $globalemail = $fetch['login_email'];
-            $loggedinid = $fetch['login_id'];
-            $checkcustomer = "SELECT *  FROM `users` WHERE `login_user_id` = '$loggedinid'";
+            $globalloggedinid = $fetch['login_id'];
+            $checkcustomer = "SELECT *  FROM `users` WHERE `login_user_id` = '$globalloggedinid'";
             $querycustomer = mysqli_query($conn, $checkcustomer);
             if ($querycustomer >= 1) {
                 while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
@@ -28,6 +28,7 @@ if (!isset($_SESSION['customer'])) {
             global $globalname;
             global $globalcontact;
             global $globallocation;
+            global $globalloggedinid;
         }
     }
 }
