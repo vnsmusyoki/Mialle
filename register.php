@@ -1,4 +1,4 @@
-<?php $message = ''; ?>
+<?php $full_name = $phone_number = $email_address = $username = $password = $confirm_password = $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,19 +81,19 @@
                     <div class="theme-card">
                         <form class="theme-form" method="POST" autocomplete="off" action="">
                             <?php
-                            if(isset($_POST["register"])) {
-                                require 'functions/register.php'; 
+                            if (isset($_POST["register"])) {
+                                require 'functions/register.php';
                             }
                             ?>
-                            <?php echo $message; ?>
+                            <?php echo $message ?>
                             <div class="form-row row">
                                 <div class="col-md-6">
                                     <label for="email">Full Names</label>
-                                    <input type="text" class="form-control" id="fname" placeholder="Write Full Name Here">
+                                    <input type="text" class="form-control" id="fname" placeholder="Write Full Name Here" name="full_name" value="<?php echo $full_name; ?>" style="text-transform:capitalize;">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="review">Phone Number</label>
-                                    <input type="number" min="1" class="form-control" id="lname" placeholder="Enter Valid Phone Number">
+                                    <input type="number" min="1" class="form-control" id="lname" placeholder="Enter Valid Phone Number" name="phone_number" value="<?php echo $phone_number; ?>">
                                 </div>
                             </div>
                             <div class="form-row row">
@@ -109,15 +109,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username" value="<?php echo $username; ?>">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="username">Email Address</label>
+                                    <input type="text" class="form-control" id="emailadd" name="email_address" placeholder="Enter your valid Email Address" value="<?php echo $email_address; ?>">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="password">Password</label>
-                                    <input type="text" class="form-control" id="password" name="password" placeholder="Enter your password">
+                                    <input type="text" class="form-control" id="password" name="password" placeholder="Enter your password" value="<?php echo $password; ?>">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="username">Confrm Password</label>
-                                    <input type="password" class="form-control" id="username" name="confirm_password" placeholder="Confirm your password">
+                                    <input type="password" class="form-control" id="username" name="confirm_password" placeholder="Confirm your password" value="<?php echo $confirm_password; ?>">
                                 </div>
 
                                 <button type="submit" class="btn btn-solid w-auto" name="register">create Account</button>
@@ -139,7 +143,7 @@
 
 
     <!-- latest jquery-->
-   
+
     <!-- menu js-->
     <script src="assets/js/menu.js"></script>
 
