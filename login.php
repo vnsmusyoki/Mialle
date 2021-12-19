@@ -1,4 +1,6 @@
 <?php
+session_start();
+$email_username = $message ='';
 if (isset($_GET['accountcreated'])) {
     $msg = $_GET['accountcreated'];
     if ($msg == "success") {
@@ -6,10 +8,9 @@ if (isset($_GET['accountcreated'])) {
         <script>
         toastr.success('Your account has been created successfully. You can proceed to Login Now.');
     </script>";
+    echo $messagenow;
+    echo "<script>window.location.replace('login.php');</script>";
     }
-
-
-    
 }
 ?>
 <!DOCTYPE html>
@@ -18,19 +19,12 @@ if (isset($_GET['accountcreated'])) {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="multikart">
-    <meta name="keywords" content="multikart">
-    <meta name="author" content="multikart">
+    <meta name="viewport" content="width=device-width,initial-scale=1"> 
     <link rel="icon" href="assets/images/favicon/1.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/favicon/1.png" type="image/x-icon">
-    <title>Multikart - Multi-purpopse E-commerce Html Template</title>
+    <title>Mialle - Account Login</title>
 
-    <!--Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
-
+ 
     <!-- Icons -->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
 
@@ -92,16 +86,24 @@ if (isset($_GET['accountcreated'])) {
                 <div class="col-lg-6">
                     <h3>Login</h3>
                     <div class="theme-card">
-                        <form class="theme-form">
-                            <?php echo $messagenow; ?>
+                        <form class="theme-form" method="POST" autocomplete="off">
+                            <?php
+                            if (isset($_POST["login"])) {
+                               
+                                require 'functions/login.php';
+                            }
+                            ?>
+                            <!-- <?php echo $messagenow; ?> -->
+                            <?php echo $message; ?>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                                <label for="email">Email Address / Username</label>
+                                <input type="text" class="form-control" id="email" name="email_username" placeholder="Email Address or Username" value="<?php echo $email_username;?>">
                             </div>
                             <div class="form-group">
                                 <label for="review">Password</label>
-                                <input type="password" class="form-control" id="review" placeholder="Enter your password" required="">
-                            </div><a href="#" class="btn btn-solid">Login</a>
+                                <input type="password" class="form-control" id="review" placeholder="Enter your password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-solid" name="login">Login</button>
                         </form>
                     </div>
                 </div>
@@ -147,15 +149,7 @@ if (isset($_GET['accountcreated'])) {
     <script src="assets/js/theme-setting.js"></script>
     <script src="assets/js/script.js"></script>
 
-    <script>
-        function openSearch() {
-            document.getElementById("search-overlay").style.display = "block";
-        }
 
-        function closeSearch() {
-            document.getElementById("search-overlay").style.display = "none";
-        }
-    </script>
 </body>
 
 </html>

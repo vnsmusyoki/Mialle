@@ -1,11 +1,5 @@
 <?php
 include 'db-connection.php';
-$message = "
-        <script>
-            toastr.success('Welcome and continue with registration');
-        </script>
-    ";
-
 $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
 $location = mysqli_real_escape_string($conn, $_POST['location']);
 $phone_number = mysqli_real_escape_string($conn, $_POST['phone_number']);
