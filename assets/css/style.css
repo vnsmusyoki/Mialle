@@ -17559,10 +17559,10 @@ header.stickycls {
     color: #999999;
     font-size: 20px;
 }
-
+#container #login .theme-form input,
 .template-password #container #login .theme-form input {
     border-color: #dddddd;
-    font-size: 12px;
+    font-size: 16px;
     padding: 17px 25px;
     margin-bottom: 15px;
     height: inherit;

@@ -1,3 +1,17 @@
+<?php
+if (isset($_GET['accountcreated'])) {
+    $msg = $_GET['accountcreated'];
+    if ($msg == "success") {
+        $messagenow = "
+        <script>
+        toastr.success('Your account has been created successfully. You can proceed to Login Now.');
+    </script>";
+    }
+
+
+    
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,13 +51,15 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/toastr-btn.css">
-
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/toastr.min.js"></script>
+    <script src="assets/js/toastr-options.js"></script>
 </head>
 
 <body class="theme-color-1">
 
 
-   <?php include 'login-header.php'; ?>
+    <?php include 'login-header.php'; ?>
 
 
     <!-- breadcrumb start -->
@@ -77,6 +93,7 @@
                     <h3>Login</h3>
                     <div class="theme-card">
                         <form class="theme-form">
+                            <?php echo $messagenow; ?>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" id="email" placeholder="Email" required="">
@@ -109,9 +126,7 @@
     <!-- tap to top end -->
 
 
-    <!-- latest jquery-->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/toastr.min.js"></script>
+
 
     <!-- menu js-->
     <script src="assets/js/menu.js"></script>
