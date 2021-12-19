@@ -41,30 +41,55 @@ if (empty($product_name) || empty($product_price) || empty($product_category) ||
                             echo "<script>alert('upload too big');</script>";
                         } else {
                             $filenamenew = uniqid('', true) . "." . $fileActualExt;
-                            $filedestination = 'products/' . $filenamenew;
+                            $filedestination = '../products/' . $filenamenew;
                             move_uploaded_file($filetmpname, $filedestination);
-                                $uploadimage = "INSERT INTO `product_images`(`product_image_product_id`, `product_images_name`) VALUES ('$last_id', '$filenamenew')";
-                                $queryuploadimage = mysqli_query($conn, $uploadimage);
-                                if ($queryuploadimage) {
-                                    echo "<script>window.location.replace('my-products.php?productuploaded=success');</script>";
-                                }
+                            $uploadimage = "INSERT INTO `product_images`(`product_image_product_id`, `product_images_name`) VALUES ('$last_id', '$filenamenew')";
+                            $queryuploadimage = mysqli_query($conn, $uploadimage);
+                            if ($queryuploadimage) {
+                                $message = "
+                                <script>
+                                    toastr.success('Image Upload success');
+                                </script>
+                                    ";
+                            }
                         }
                     } else {
+                        $deleteproduct = "DELETE FROM `products` WHERE `product_name`='$product_name' AND  `product_description`='$product_description'AND  `product_price`='$product_price' AND  `product_user_id`='$globalloggedinid'";
+                        $querydeleteproduct = mysqli_query($conn, $deleteproduct);
 
-                        $message = "
+                        if ($querydeleteproduct) {
+                            $message = "
                         <script>
                             toastr.error('An error occurred during images upload');
                         </script>
-                    ";
+                            ";
+                        }
                     }
                 } else {
-                    $message = "
+                    $deleteproduct = "DELETE FROM `products` WHERE `product_name`='$product_name', `product_description`='$product_description', `product_price`='$product_price', `product_user_id`='$globalloggedinid'";
+                    $querydeleteproduct = mysqli_query($conn, $deleteproduct);
+                    if ($querydeleteproduct) {
+                        $message = "
                     <script>
                         toastr.error('Upload Only Images with jpg,png, jpeg extensions as product images');
                     </script>
                 ";
+                    }
                 }
             }
+            $lastpicture = "SELECT * FROM `product_images` WHERE `product_image_product_id`='$last_id' ORDER BY `product_images_id` LIMIT 1";
+            $querylastpicture = mysqli_query($conn, $lastpicture);
+            while ($fetchimage  = mysqli_fetch_assoc($querylastpicture)) {
+                $checkedlastpicture = $fetchimage['product_images_name'];
+            
+
+              $updateproduct = "UPDATE `products` SET `product_images`= '$checkedlastpicture' WHERE `product_id`='$last_id'";
+                $queryupdateproduct  = mysqli_query($conn, $updateproduct);
+                if ($queryupdateproduct) {
+                    echo "<script>window.location.replace('my-products.php?productuploaded=success');</script>";
+                }
+            }
+            
         }
     } else {
         $message = "

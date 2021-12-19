@@ -55,7 +55,7 @@
             <!-- Page Sidebar Start-->
             <div class="page-sidebar">
                 <div class="main-header-left d-none d-lg-block">
-                    <div class="logo-wrapper"><a href="index.php"><img class="blur-up lazyloaded" src="assets/images/dashboard/multikart-logo.png" alt=""></a></div>
+                    <div class="logo-wrapper"><a href="index.php"><img class="blur-up lazyloaded" src="assets/images/dashboard/multikart-logos.png" alt=""></a></div>
                 </div>
                 <div class="sidebar custom-scrollbar">
                     <div class="sidebar-user text-center">
