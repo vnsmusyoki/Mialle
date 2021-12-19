@@ -1,7 +1,28 @@
+<?php include 'customer.php'; ?>
 <?php
-include 'customer.php';
-
-
+$product_name =  $product_price = $product_description = $message = '';
+if (isset($_GET['product'])) {
+    $productid = $_GET['product'];
+    $checkproduct = "SELECT * FROM `products` WHERE `product_id` = '$productid'";
+    $querycheckproduct = mysqli_query($conn, $checkproduct);
+    $queryproductrows = mysqli_num_rows($querycheckproduct);
+    if ($queryproductrows >= 1) {
+        while ($fetch = mysqli_fetch_assoc($querycheckproduct)) {
+            $globalproductname = $fetch['product_name'];
+            $globalproductdesc = $fetch['product_description'];
+            $globalproductprice = $fetch['product_price'];
+            $globalproductid = $fetch['product_id'];
+            $globalproductimage = $fetch['product_images'];
+        }
+        global $globalproductname;
+        global $globalproductprice;
+        global $globalproductdesc;
+        global $globalproductid;
+        global $globalproductimage;
+    }
+} else {
+    echo "<script>window.location.replace('my-products.php');</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +35,7 @@ include 'customer.php';
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - My Products</title>
-
+    <title>Mialle - Edit Product</title>
 
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
@@ -36,6 +56,14 @@ include 'customer.php';
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="../assets/js/toastr.min.js"></script>
     <script src="../assets/js/toastr-options.js"></script>
+    <script src="assets/js/images-view.js"></script>
+    <style>
+        .imgGallery img {
+            padding: 8px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,7 +85,7 @@ include 'customer.php';
                     <div class="sidebar-user text-center">
                         <div><img class="img-60 rounded-circle blur-up lazyloaded" src="assets/images/dashboard/man.png" alt="#">
                         </div>
-                        <h6 class="mt-3 f-14"><?php echo $globalname; ?></h6>
+                        <h6 class="mt-3 f-14"><?php echo $globalusername; ?></h6>
                         <p><?php echo $globalemail; ?></p>
                     </div>
                     <?php include 'sidebar.php'; ?>
@@ -76,7 +104,7 @@ include 'customer.php';
                             <div class="col-lg-6">
                                 <div class="page-header-left">
                                     <h3>Product List
-                                        <small>Uploaded Products</small>
+                                        <small>Upload Edited Product</small>
                                     </h3>
                                 </div>
                             </div>
@@ -84,99 +112,47 @@ include 'customer.php';
                                 <ol class="breadcrumb pull-right">
                                     <li class="breadcrumb-item"><a href="index.php"><i data-feather="home"></i></a></li>
                                     <li class="breadcrumb-item">Products</li>
-                                    <li class="breadcrumb-item active">My Listings</li>
+                                    <li class="breadcrumb-item active">Upload Edited Product</li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Container-fluid Ends-->
-                <?php
-                if (isset($_GET['productuploaded'])) {
-                    $msg = $_GET['productuploaded'];
-                    if ($msg == "success") {
-                        $messagenow = "
-                        <script>
-                        toastr.success('Product uploaded successfully.');
-                    </script>";
-                    }
-                    echo $messagenow;
-                }
 
-                ?>
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="row products-admin ratio_asos">
-                        <?php
+                    <div class="card">
+                        <div class="row product-page-main card-body">
+                            <div class="col-xl-4">
+                                <img src="../products/<?php echo $globalproductimage; ?>" alt="" class="img-fluid">
 
-                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalloggedinid'";
-                        $queryproducts = mysqli_query($conn, $products);
-                        $queryproductsrows = mysqli_num_rows($queryproducts);
-                        if ($queryproductsrows >= 1) {
-                            while ($fetch = mysqli_fetch_assoc($queryproducts)) {
-                                $name = $fetch['product_name'];
-                                $price = $fetch['product_price'];
-                                $image = $fetch['product_images'];
-                                $productid = $fetch['product_id'];
-                                $categoryid = $fetch['product_category_id'];
-                                $subcategoryid = $fetch['product_sub_category_id'];
-                                $checkcategory = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$subcategoryid'";
-                                $querycategory = mysqli_query($conn, $checkcategory);
-                                while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
-                                    $subcategoryname = $fetchsubcategory['sub_category_name'];
-                                }
-                                $checkcategory = "SELECT * FROM `categories` WHERE `category_id`='$categoryid'";
-                                $querycategory = mysqli_query($conn, $checkcategory);
-                                while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
-                                    $categoryname = $fetchcategory['category_name'];
-                                   
-                                }
-                                echo "
-                                <div class='col-xl-3 col-sm-6'>
-                                <div class='card'>
-                                    <div class='card-body product-box'>
-                                        <div class='img-wrapper'>
-                                            <div class='front'>
-                                                <a href='product-details.php?product=$productid'><img src='../products/$image' class='img-fluid blur-up lazyload bg-img' alt=''></a>
-                                                <div class='product-hover'>
-                                                    <ul>
-                                                        <li>
-                                                            <a href='edit-product.php?product=$productid' class='btn' title='Edit Product'><i class='ti-pencil-alt'></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href='delete-product.php?product=$productid' class='btn'  title='Delete Product'><i class='ti-trash'></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class='product-detail'>
-    
-                                            <a href='product-details.php?product=$productid'>
-                                                <h6>$name</h6>
-                                            </a>
-                                            <h4>Kshs. $price </h4>
-                                             <h6>$categoryname - $subcategoryname</h6>
-                                        </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <div class="product-page-details product-right mb-0">
+                                    <h2><?php echo $globalproductname; ?></h2>
+
+                                    <hr>
+                                    <h6 class="product-title">product details</h6>
+                                    <p><?php echo $globalproductdesc; ?></p>
+                                    <div class="product-price digits mt-2">
+                                        <h3>Kshs. <?php echo $globalproductprice; ?></h3>
+                                    </div>
+
+                                    <hr>
+                                    <h6 class="product-title size-text">
+                                        <span class="pull-right">
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#sizemodal">size chart</a>
+                                        </span>
+                                    </h6>
+ 
+                                    <div class="m-t-15">
+                                        <button class="btn btn-primary m-r-10" type="button">Add To Cart</button>
+                                        <button class="btn btn-secondary" type="button">Buy Now</button>
                                     </div>
                                 </div>
                             </div>
-    
-                                ";
-                            }
-                        } else {
-                            echo "
-                                <div class ='col-lg-12 col-xs-12'>
-                                    <div class='card'>
-                                    <div class='product-detail' style='padding:1rem;'>
-                                        <center><strong>No Products Added.</strong></center>
-                                    </div>
-                                    </div>
-                                </div>
-                                ";
-                        }
-                        ?>
-
+                        </div>
                     </div>
                 </div>
                 <!-- Container-fluid Ends-->
@@ -202,6 +178,8 @@ include 'customer.php';
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
 
+    <!--Customizer admin-->
+    <!-- <script src="assets/js/admin-customizer.js"></script> -->
 
     <!-- lazyload js-->
     <script src="assets/js/lazysizes.min.js"></script>

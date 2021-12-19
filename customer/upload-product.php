@@ -140,7 +140,7 @@
                                             <br>
                                             <div class="col-md-6 mb-4">
                                                 <label for="review">Product Images</label>
-                                                <input type="file" class="form-control" id="chooseFile" placeholder="Upload Product Images" name="picture[]" multiple>
+                                                <input type="file" class="form-control" id="chooseFile" placeholder="Upload Product Images" name="picture">
                                             </div>
                                             <br>
                                         </div>
