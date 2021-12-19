@@ -7,7 +7,7 @@
                     <div class="col-lg-6">
                         <div class="header-contact">
                             <ul>
-                                <li>Welcome to Our store Multikart</li>
+                                <li>Welcome to Our store Mialle</li>
                                 <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 - 7890</li>
                             </ul>
                         </div>
@@ -177,7 +177,7 @@
                                 </div>
                             </div>
                             <div class="brand-logo">
-                                <a href="index.html"> <img src="assets/images/icon/logo.png" class="img-fluid blur-up lazyload" alt=""></a>
+                                <a href="index.html"> <img src="customer/assets/images/dashboard/multikart-logos.png" class="img-fluid blur-up lazyload" alt=""></a>
                             </div>
                         </div>
                         <div class="menu-right pull-right">
@@ -470,15 +470,7 @@
                                                 <li><a href="faq.html">FAQ</a></li>
                                             </ul>
                                         </li>
-                                        <li>
-                                            <a href="#">blog</a>
-                                            <ul>
-                                                <li><a href="blog-page.html">left sidebar</a></li>
-                                                <li><a href="blog(right-sidebar).html">right sidebar</a></li>
-                                                <li><a href="blog(no-sidebar).html">no sidebar</a></li>
-                                                <li><a href="blog-details.html">blog details</a></li>
-                                            </ul>
-                                        </li>
+                                         
                                     </ul>
                                 </nav>
                             </div>
