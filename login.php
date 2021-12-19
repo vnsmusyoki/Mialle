@@ -35,6 +35,8 @@
 
     <!-- Theme css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/toastr-btn.css">
 
 </head>
 
@@ -109,6 +111,7 @@
 
     <!-- latest jquery-->
     <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/toastr.min.js"></script>
 
     <!-- menu js-->
     <script src="assets/js/menu.js"></script>

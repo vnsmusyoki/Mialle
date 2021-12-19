@@ -1,3 +1,4 @@
+<?php $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,12 +11,12 @@
     <meta name="author" content="multikart">
     <link rel="icon" href="assets/images/favicon/1.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/favicon/1.png" type="image/x-icon">
-    <title>Multikart - Multi-purpopse E-commerce Html Template</title>
+    <title>Mialle - Create New Account</title>
 
     <!--Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet"> -->
 
     <!-- Icons -->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
@@ -35,7 +36,11 @@
 
     <!-- Theme css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/toastr-btn.css">
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/toastr.min.js"></script>
+    <script src="assets/js/toastr-options.js"></script>
 </head>
 
 <body class="theme-color-1">
@@ -74,15 +79,21 @@
                 <div class="col-lg-12">
                     <h3>create account</h3>
                     <div class="theme-card">
-                        <form class="theme-form">
+                        <form class="theme-form" method="POST" autocomplete="off" action="">
+                            <?php
+                            if(isset($_POST["register"])) {
+                                require 'functions/register.php'; 
+                            }
+                            ?>
+                            <?php echo $message; ?>
                             <div class="form-row row">
                                 <div class="col-md-6">
                                     <label for="email">Full Names</label>
-                                    <input type="text" class="form-control" id="fname" placeholder="Write Full Name Here" required="">
+                                    <input type="text" class="form-control" id="fname" placeholder="Write Full Name Here">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="review">Phone Number</label>
-                                    <input type="password" class="form-control" id="lname" placeholder="Enter Valid Phone Number" required="">
+                                    <input type="number" min="1" class="form-control" id="lname" placeholder="Enter Valid Phone Number">
                                 </div>
                             </div>
                             <div class="form-row row">
@@ -98,18 +109,18 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username" required="">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="password">Password</label>
-                                    <input type="text" class="form-control" id="password" name="password" placeholder="Enter your password" required="">
+                                    <input type="text" class="form-control" id="password" name="password" placeholder="Enter your password">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="username">Confrm Password</label>
-                                    <input type="password" class="form-control" id="username" name="confirm_password" placeholder="Confirm your password" required="">
+                                    <input type="password" class="form-control" id="username" name="confirm_password" placeholder="Confirm your password">
                                 </div>
 
-                                <button type="submit" class="btn btn-solid w-auto">create Account</button>
+                                <button type="submit" class="btn btn-solid w-auto" name="register">create Account</button>
                             </div>
                         </form>
                     </div>
@@ -128,8 +139,7 @@
 
 
     <!-- latest jquery-->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-
+   
     <!-- menu js-->
     <script src="assets/js/menu.js"></script>
 
@@ -148,7 +158,7 @@
     <!-- Theme js-->
     <script src="assets/js/theme-setting.js"></script>
     <script src="assets/js/script.js"></script>
-
+    <!-- 
     <script>
         function openSearch() {
             document.getElementById("search-overlay").style.display = "block";
@@ -157,7 +167,7 @@
         function closeSearch() {
             document.getElementById("search-overlay").style.display = "none";
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
