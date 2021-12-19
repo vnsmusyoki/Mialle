@@ -27,11 +27,11 @@ if (empty($product_name) || empty($product_price) || empty($product_category) ||
         $last_id = mysqli_insert_id($conn);
         if ($queryproduct) {
             foreach ($_FILES['picture']['name'] as $id => $val) {
-                $filename = $_FILES['picture']['name'];
-                $filetmpname = $_FILES['picture']['tmp_name'];
-                $filesize = $_FILES['picture']['size'];
-                $fileerror = $_FILES['picture']['error'];
-                $filetype = $_FILES['picture']['type'];
+                $filename = $_FILES['picture']['name'][$id];
+                $filetmpname = $_FILES['picture']['tmp_name'][$id];
+                $filesize = $_FILES['picture']['size'][$id];
+                $fileerror = $_FILES['picture']['error'][$id];
+                $filetype = $_FILES['picture']['type'][$id];
                 $fileext = explode('.', $filename);
                 $fileActualExt = strtolower(end($fileext));
                 $allowed = array('jpg', 'png', 'jpeg');
@@ -43,15 +43,11 @@ if (empty($product_name) || empty($product_price) || empty($product_category) ||
                             $filenamenew = uniqid('', true) . "." . $fileActualExt;
                             $filedestination = 'products/' . $filenamenew;
                             move_uploaded_file($filetmpname, $filedestination);
-
-                            if ($queryinsert) {
-
                                 $uploadimage = "INSERT INTO `product_images`(`product_image_product_id`, `product_images_name`) VALUES ('$last_id', '$filenamenew')";
                                 $queryuploadimage = mysqli_query($conn, $uploadimage);
                                 if ($queryuploadimage) {
                                     echo "<script>window.location.replace('my-products.php?productuploaded=success');</script>";
                                 }
-                            }
                         }
                     } else {
 
