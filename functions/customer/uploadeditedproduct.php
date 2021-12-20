@@ -13,7 +13,7 @@ if (empty($product_name) || empty($product_price) || empty($product_category) ||
             toastr.error('Please Provide all the details');
         </script>
     ";
-} else if (!preg_match("/^[a-zA-z ]*$/", $product_name)) {
+} else if (!preg_match("/^[a-zA-z0-9 ]*$/", $product_name)) {
     $message = "
         <script>
             toastr.error('Provided an invalid name');
