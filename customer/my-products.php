@@ -129,7 +129,6 @@ include 'customer.php';
                                 $querycategory = mysqli_query($conn, $checkcategory);
                                 while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
                                     $categoryname = $fetchcategory['category_name'];
-                                   
                                 }
                                 echo "
                                 <div class='col-xl-3 col-sm-6'>
@@ -157,6 +156,7 @@ include 'customer.php';
                                             </a>
                                             <h4>Kshs. $price </h4>
                                              <h6>$categoryname - $subcategoryname</h6>
+                                             <a href='feedbacks.php?product=$productid' class='btn btn-warning'>Feed backs</a>
                                         </div>
                                     </div>
                                 </div>

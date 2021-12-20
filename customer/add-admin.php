@@ -1,31 +1,5 @@
 <?php include 'customer.php'; ?>
-<?php
-$product_name =  $product_price = $product_description = $message = '';
-if (isset($_GET['product'])) {
-    $productid = $_GET['product'];
-    $checkproduct = "SELECT * FROM `products` WHERE `product_id` = '$productid'";
-    $querycheckproduct = mysqli_query($conn, $checkproduct);
-    $queryproductrows = mysqli_num_rows($querycheckproduct);
-    if ($queryproductrows >= 1) {
-        while ($fetch = mysqli_fetch_assoc($querycheckproduct)) {
-            $globalproductname = $fetch['product_name'];
-            $globalproductdesc = $fetch['product_description'];
-            $globalproductprice = $fetch['product_price'];
-            $globalproductid = $fetch['product_id'];
-            $globalproductimage = $fetch['product_images'];
-            $globalproductuserid = $fetch['product_user_id'];
-        }
-        global $globalproductname;
-        global $globalproductprice;
-        global $globalproductdesc;
-        global $globalproductid;
-        global $globalproductimage;
-        global $globalproductuserid;
-    }
-} else {
-    echo "<script>window.location.replace('my-products.php');</script>";
-}
-?>
+<?php $first_name =  $last_name = $mobile_number = $email_address = $username = $password = $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +11,7 @@ if (isset($_GET['product'])) {
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - Edit Product</title>
+    <title>Mialle - Upload New Admin</title>
 
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
@@ -105,16 +79,16 @@ if (isset($_GET['product'])) {
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="page-header-left">
-                                    <h3>Product List
-                                        <small>Upload Edited Product</small>
+                                    <h3>Admin List
+                                        <small>Upload New Admin</small>
                                     </h3>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <ol class="breadcrumb pull-right">
                                     <li class="breadcrumb-item"><a href="index.php"><i data-feather="home"></i></a></li>
-                                    <li class="breadcrumb-item">Products</li>
-                                    <li class="breadcrumb-item active">Upload Edited Product</li>
+                                    <li class="breadcrumb-item">Admin</li>
+                                    <li class="breadcrumb-item active">Upload New Admin</li>
                                 </ol>
                             </div>
                         </div>
@@ -124,40 +98,58 @@ if (isset($_GET['product'])) {
 
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="card">
-                        <div class="row product-page-main card-body">
-                            <div class="col-xl-4">
-                                <img src="../products/<?php echo $globalproductimage; ?>" alt="" class="img-fluid">
-
-                            </div>
-                            <div class="col-xl-8">
-                                <div class="product-page-details product-right mb-0">
-                                    <h2><?php echo $globalproductname; ?></h2>
-
-                                    <hr>
-                                    <h6 class="product-title">product details</h6>
-                                    <p><?php echo $globalproductdesc; ?></p>
-                                    <div class="product-price digits mt-2">
-                                        <h3>Kshs. <?php echo $globalproductprice; ?></h3>
-                                    </div>
-
-                                    <hr>
-
-                                    <?php
-
-
-                                    if ($globalloggedinid !== $globalproductuserid) {
-                                        echo "
-                                        <div class='m-t-15'>
-                                        <a href='add-to-cart.php?product=$globalproductid' class='btn btn-primary m-r-10' type='button'>Add To Cart</a>
-                                        <button class='btn btn-secondary' type='button'>Check Availability</button>
-                                    </div>
-                                        ";
-                                    }
-
-
-                                    ?>
-
+                    <div class="row products-admin ratio_asos">
+                        <div class="col-xl-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-body product-box">
+                                    <form action="" enctype="multipart/form-data" method="POST" action="">
+                                        <?php
+                                        if (isset($_POST["uploadproduct"])) {
+                                            require '../functions/registeradmin.php';
+                                        }
+                                        ?>
+                                        <?php echo $message ?>
+                                        <div class="form-row row">
+                                            <div class="col-md-6 mb-4">
+                                                <label for="name">First Name</label>
+                                                <input type="text" class="form-control" id="fname" placeholder="Write First Name here" name="first_name" value="<?php echo $first_name; ?>" style="text-transform:capitalize;">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6 mb-4">
+                                                <label for="review">Last Name</label>
+                                                <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="last_name" value="<?php echo $last_name; ?>">
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="form-row row">
+                                            <div class="col-md-6 mb-4">
+                                                <label for="review">Mobile Number</label>
+                                                <input type="number" min='1' class="form-control" placeholder="Write Phone Number Here" name="mobile_number" value="<?php echo $mobile_number; ?>">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6 mb-4">
+                                                <label for="review">Email Address</label>
+                                                <input type="email" class="form-control" placeholder="Write Email Address Here" name="email_address" value="<?php echo $email_address; ?>">
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="form-row row">
+                                            <div class="col-md-6 mb-4">
+                                                <label for="review">Username</label>
+                                                <input type="text"   class="form-control" placeholder="Write Username Here" name="username" value="<?php echo $username; ?>">
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6 mb-4">
+                                                <label for="review">Password</label>
+                                                <input type="password" class="form-control" placeholder="Write Password Here" name="password" value="<?php echo $password; ?>">
+                                            </div>
+                                            <br>
+                                        </div>
+                                     
+ 
+                                        <br>
+                                        <button type="submit" class="btn btn-solid w-auto" name="uploadproduct">Upload New Admin </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

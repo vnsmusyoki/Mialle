@@ -109,7 +109,7 @@ include 'customer.php';
                     <div class="row products-admin ratio_asos">
                         <?php
 
-                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalloggedinid'";
+                        $products = "SELECT * FROM `products` WHERE `product_user_id` != '$globalloggedinid'";
                         $queryproducts = mysqli_query($conn, $products);
                         $queryproductsrows = mysqli_num_rows($queryproducts);
                         if ($queryproductsrows >= 1) {
@@ -129,6 +129,7 @@ include 'customer.php';
                                 $querycategory = mysqli_query($conn, $checkcategory);
                                 while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
                                     $categoryname = $fetchcategory['category_name'];
+                                   
                                 }
                                 echo "
                                 <div class='col-xl-3 col-sm-6'>
@@ -138,14 +139,7 @@ include 'customer.php';
                                             <div class='front'>
                                                 <a href='product-details.php?product=$productid'><img src='../products/$image' class='img-fluid blur-up lazyload bg-img' alt=''></a>
                                                 <div class='product-hover'>
-                                                    <ul>
-                                                        <li>
-                                                            <a href='edit-product.php?product=$productid' class='btn' title='Edit Product'><i class='ti-pencil-alt'></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href='delete-product.php?product=$productid' class='btn'  title='Delete Product'><i class='ti-trash'></i></a>
-                                                        </li>
-                                                    </ul>
+                                                     
                                                 </div>
                                             </div>
                                         </div>
@@ -156,7 +150,7 @@ include 'customer.php';
                                             </a>
                                             <h4>Kshs. $price </h4>
                                              <h6>$categoryname - $subcategoryname</h6>
-                                             <a href='feedbacks.php?product=$productid' class='btn btn-warning'>Feed backs</a>
+                                             <a href='product-details.php?product=$productid' class='btn btn-warning'>Shop Now</a>
                                         </div>
                                     </div>
                                 </div>

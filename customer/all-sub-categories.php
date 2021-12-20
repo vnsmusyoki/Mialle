@@ -28,7 +28,7 @@ include 'customer.php';
 
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/datatables.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/toastr.min.css">
@@ -106,76 +106,59 @@ include 'customer.php';
                 ?>
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="row products-admin ratio_asos">
-                        <?php
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Manage Categories</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr>
+                                                <th>Sub Category Name</th>
+                                                <th>Category Name</th>
+                                                <th>Description</th>
+                                                <th> Item</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
 
-                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalloggedinid'";
-                        $queryproducts = mysqli_query($conn, $products);
-                        $queryproductsrows = mysqli_num_rows($queryproducts);
-                        if ($queryproductsrows >= 1) {
-                            while ($fetch = mysqli_fetch_assoc($queryproducts)) {
-                                $name = $fetch['product_name'];
-                                $price = $fetch['product_price'];
-                                $image = $fetch['product_images'];
-                                $productid = $fetch['product_id'];
-                                $categoryid = $fetch['product_category_id'];
-                                $subcategoryid = $fetch['product_sub_category_id'];
-                                $checkcategory = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$subcategoryid'";
-                                $querycategory = mysqli_query($conn, $checkcategory);
-                                while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
-                                    $subcategoryname = $fetchsubcategory['sub_category_name'];
-                                }
-                                $checkcategory = "SELECT * FROM `categories` WHERE `category_id`='$categoryid'";
-                                $querycategory = mysqli_query($conn, $checkcategory);
-                                while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
-                                    $categoryname = $fetchcategory['category_name'];
-                                }
-                                echo "
-                                <div class='col-xl-3 col-sm-6'>
-                                <div class='card'>
-                                    <div class='card-body product-box'>
-                                        <div class='img-wrapper'>
-                                            <div class='front'>
-                                                <a href='product-details.php?product=$productid'><img src='../products/$image' class='img-fluid blur-up lazyload bg-img' alt=''></a>
-                                                <div class='product-hover'>
-                                                    <ul>
-                                                        <li>
-                                                            <a href='edit-product.php?product=$productid' class='btn' title='Edit Product'><i class='ti-pencil-alt'></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href='delete-product.php?product=$productid' class='btn'  title='Delete Product'><i class='ti-trash'></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class='product-detail'>
-    
-                                            <a href='product-details.php?product=$productid'>
-                                                <h6>$name</h6>
-                                            </a>
-                                            <h4>Kshs. $price </h4>
-                                             <h6>$categoryname - $subcategoryname</h6>
-                                             <a href='feedbacks.php?product=$productid' class='btn btn-warning'>Feed backs</a>
-                                        </div>
-                                    </div>
+                                            $products = "SELECT * FROM sub_categories ";
+                                            $queryproducts = mysqli_query($conn, $products);
+                                            $queryproductsrows = mysqli_num_rows($queryproducts);
+                                            if ($queryproductsrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryproducts)) {
+                                                    $subcatid = $fetch['sub_category_id'];
+                                                    $name = $fetch['sub_category_name'];
+                                                    $desc = $fetch['sub_category_desc'];
+                                                    $catid = $fetch['sub_category_category_id'];
+                                                    $checkcategory = "SELECT * FROM `categories` WHERE `category_id`='$catid'";
+                                                    $querycategory = mysqli_query($conn, $checkcategory);
+                                                    while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
+                                                        $categoryname = $fetchcategory['category_name'];
+                                                    }
+                                                    echo "
+                                                    <tr>
+                                                  
+                                                        <td>$name</td>
+                                                        <td>$categoryname</td>
+                                                        <td>$desc</td> 
+                                                        <td><a href='edit-sub-category.php?subcategory=$catid' class='btn btn-warning'>Edit </a></td>
+
+                                                    </tr>";
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-    
-                                ";
-                            }
-                        } else {
-                            echo "
-                                <div class ='col-lg-12 col-xs-12'>
-                                    <div class='card'>
-                                    <div class='product-detail' style='padding:1rem;'>
-                                        <center><strong>No Products Added.</strong></center>
-                                    </div>
-                                    </div>
-                                </div>
-                                ";
-                        }
-                        ?>
+                        </div>
+                    </div>
+                    <div class="row products-admin ratio_asos">
+
 
                     </div>
                 </div>
@@ -201,7 +184,8 @@ include 'customer.php';
 
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
-
+    <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/datatables/custom-basic.js"></script>
 
     <!-- lazyload js-->
     <script src="assets/js/lazysizes.min.js"></script>

@@ -1,30 +1,7 @@
-<?php include 'customer.php'; ?>
 <?php
-$product_name =  $product_price = $product_description = $message = '';
-if (isset($_GET['product'])) {
-    $productid = $_GET['product'];
-    $checkproduct = "SELECT * FROM `products` WHERE `product_id` = '$productid'";
-    $querycheckproduct = mysqli_query($conn, $checkproduct);
-    $queryproductrows = mysqli_num_rows($querycheckproduct);
-    if ($queryproductrows >= 1) {
-        while ($fetch = mysqli_fetch_assoc($querycheckproduct)) {
-            $globalproductname = $fetch['product_name'];
-            $globalproductdesc = $fetch['product_description'];
-            $globalproductprice = $fetch['product_price'];
-            $globalproductid = $fetch['product_id'];
-            $globalproductimage = $fetch['product_images'];
-            $globalproductuserid = $fetch['product_user_id'];
-        }
-        global $globalproductname;
-        global $globalproductprice;
-        global $globalproductdesc;
-        global $globalproductid;
-        global $globalproductimage;
-        global $globalproductuserid;
-    }
-} else {
-    echo "<script>window.location.replace('my-products.php');</script>";
-}
+include 'customer.php';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +14,8 @@ if (isset($_GET['product'])) {
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - Edit Product</title>
+    <title>Mialle - My Products</title>
+
 
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
@@ -50,7 +28,7 @@ if (isset($_GET['product'])) {
 
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/datatables.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/toastr.min.css">
@@ -58,14 +36,6 @@ if (isset($_GET['product'])) {
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="../assets/js/toastr.min.js"></script>
     <script src="../assets/js/toastr-options.js"></script>
-    <script src="assets/js/images-view.js"></script>
-    <style>
-        .imgGallery img {
-            padding: 8px;
-            width: 100px;
-            height: 100px;
-        }
-    </style>
 </head>
 
 <body>
@@ -87,7 +57,7 @@ if (isset($_GET['product'])) {
                     <div class="sidebar-user text-center">
                         <div><img class="img-60 rounded-circle blur-up lazyloaded" src="assets/images/dashboard/man.png" alt="#">
                         </div>
-                        <h6 class="mt-3 f-14"><?php echo $globalusername; ?></h6>
+                        <h6 class="mt-3 f-14"><?php echo $globalname; ?></h6>
                         <p><?php echo $globalemail; ?></p>
                     </div>
                     <?php include 'sidebar.php'; ?>
@@ -105,16 +75,16 @@ if (isset($_GET['product'])) {
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="page-header-left">
-                                    <h3>Product List
-                                        <small>Upload Edited Product</small>
+                                    <h3>Admin List
+                                        <small>All Admin Accountd</small>
                                     </h3>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <ol class="breadcrumb pull-right">
                                     <li class="breadcrumb-item"><a href="index.php"><i data-feather="home"></i></a></li>
-                                    <li class="breadcrumb-item">Products</li>
-                                    <li class="breadcrumb-item active">Upload Edited Product</li>
+                                    <li class="breadcrumb-item">Admin</li>
+                                    <li class="breadcrumb-item active">My Listings</li>
                                 </ol>
                             </div>
                         </div>
@@ -124,44 +94,62 @@ if (isset($_GET['product'])) {
 
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="card">
-                        <div class="row product-page-main card-body">
-                            <div class="col-xl-4">
-                                <img src="../products/<?php echo $globalproductimage; ?>" alt="" class="img-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Manage Admin</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email Address</th>
+                                                <th>Username </th>
+                                                <th>Phone Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
 
-                            </div>
-                            <div class="col-xl-8">
-                                <div class="product-page-details product-right mb-0">
-                                    <h2><?php echo $globalproductname; ?></h2>
+                                            $admins = "SELECT * FROM `admin`";
+                                            $queryadmins = mysqli_query($conn, $admins);
+                                            $queryadminrows = mysqli_num_rows($queryadmins);
+                                            if ($queryadminrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryadmins)) {
+                                                    $firstname = $fetch['admin_first_name'];
+                                                    $lastname = $fetch['admin_last_name'];
+                                                    $mobile = $fetch['admin_mobile'];
+                                                    $email = $fetch['admin_email'];
+                                                    $adminloginid = $fetch['admin_login_id'];
+                                                    $checkcategory = "SELECT * FROM `login` WHERE `login_id`='$adminloginid'";
+                                                    $querycategory = mysqli_query($conn, $checkcategory);
+                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
+                                                        $username = $fetchsubcategory['login_username'];
+                                                    }
 
-                                    <hr>
-                                    <h6 class="product-title">product details</h6>
-                                    <p><?php echo $globalproductdesc; ?></p>
-                                    <div class="product-price digits mt-2">
-                                        <h3>Kshs. <?php echo $globalproductprice; ?></h3>
-                                    </div>
-
-                                    <hr>
-
-                                    <?php
-
-
-                                    if ($globalloggedinid !== $globalproductuserid) {
-                                        echo "
-                                        <div class='m-t-15'>
-                                        <a href='add-to-cart.php?product=$globalproductid' class='btn btn-primary m-r-10' type='button'>Add To Cart</a>
-                                        <button class='btn btn-secondary' type='button'>Check Availability</button>
-                                    </div>
-                                        ";
-                                    }
-
-
-                                    ?>
-
+                                                    echo "
+                                                    <tr>
+                                                         
+                                                        <td>$firstname</td>
+                                                        <td>$lastname</td>
+                                                        <td>$email</td>
+                                                        <td>$username</td>
+                                                        <td>$mobile</td>
+                                                        
+                                                    </tr>";
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- Container-fluid Ends-->
 
@@ -185,9 +173,8 @@ if (isset($_GET['product'])) {
 
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
-
-    <!--Customizer admin-->
-    <!-- <script src="assets/js/admin-customizer.js"></script> -->
+    <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/datatables/custom-basic.js"></script>
 
     <!-- lazyload js-->
     <script src="assets/js/lazysizes.min.js"></script>

@@ -47,7 +47,7 @@ if (isset($_GET['product'])) {
 
     <!-- Themify icon-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/themify-icons.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/datatables.css">
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
 
@@ -162,6 +162,57 @@ if (isset($_GET['product'])) {
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Product Feedbacks</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr>
+                                                <th>Feed back</th>
+                                                <th>Rating</th>
+                                                    
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+
+                                            $products = "SELECT * FROM `order_details` WHERE order_details_product_id='$globalproductid'";
+                                            $queryproducts = mysqli_query($conn, $products);
+                                            $queryproductsrows = mysqli_num_rows($queryproducts);
+                                            if ($queryproductsrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryproducts)) {
+                                                    $orderid = $fetch['order_details_order_id'];
+
+                                                    $comments = "SELECT * FROM `feedback` WHERE feedback_order_id='$orderid'";
+                                                    $querycomments = mysqli_query($conn, $comments);
+                                                    $queryproductsrows = mysqli_num_rows($querycomments);
+                                                    if($fetchc = mysqli_fetch_assoc($querycomments)){
+                                                        $message = $fetchc['feedback_comment'];
+                                                        $rating = $fetchc['feedback_rating'];
+                                                         echo "
+                                                    <tr>
+                                                  
+                                                        <td>$rating</td>
+                                                        <td>$message</td> 
+                                                        
+
+                                                    </tr>";
+                                                    }
+
+                                                   
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Container-fluid Ends-->
 
@@ -182,7 +233,8 @@ if (isset($_GET['product'])) {
     <!-- feather icon js-->
     <script src="assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
-
+    <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/datatables/custom-basic.js"></script>
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
 
