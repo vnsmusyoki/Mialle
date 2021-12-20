@@ -39,11 +39,21 @@
                            </div>
                        </div>
                        <div>
-                           <form class="form_search ajax-search the-basics" role="form">
-                               <input type="search" placeholder="Search any Device or Gadgets..." class="nav-search nav-search-field typeahead" aria-expanded="true">
-                               <button type="submit" name="nav-submit-button" class="btn-search">
+                           <form class="form_search ajax-search the-basics" role="form" action="" method="POST">
+                               <input type="search" placeholder="Search any Device or Gadgets..." name="search_product" class="nav-search nav-search-field typeahead" aria-expanded="true" required>
+                               <button type="submit" name="nav_submit_button" class="btn-search">
                                    <i class="ti-search"></i>
                                </button>
+                               <?php
+                                if (isset($_POST["nav_submit_button"])) {
+
+                                    include 'db-connection.php';
+                                    $product = mysqli_real_escape_string($conn, $_POST['search_product']);
+                                    echo "<script>window.location.replace('search-product.php?searchkey=$product');</script>";
+                                    
+                                    
+                                }
+                                ?>
                            </form>
                        </div>
                        <div class="menu-right pull-right">
@@ -84,11 +94,11 @@
                                                </div>
                                            </div>
                                        </li>
-                                       
+
                                        <li class="onhover-div mobile-cart">
                                            <div><img src="assets/images/icon/cart.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-shopping-cart"></i></div>
                                            <span class="cart_qty_cls"></span>
-                                         
+
                                        </li>
                                    </ul>
                                </div>
@@ -115,17 +125,17 @@
                                </div>
                                <ul id="sub-menu" class="sm pixelstrap sm-vertical">
                                    <li> <a href="electronics.php">Electronics</a>
-                                     
+
                                    </li>
                                    <li> <a href="phones-tablets.php">Mobile Phones, Tablets & Gadgets</a>
-                                        
+
                                    </li>
                                    <li> <a href="health-beauty.php">Health & Beauty</a>
-                                       
+
                                    </li>
                                    <li> <a href="fashion.php">Fashion</a>
-                                        
-                                   </li> 
+
+                                   </li>
                                    <li><a href="all-others.php">All Others </a></li>
                                </ul>
                            </nav>
@@ -146,7 +156,7 @@
                                    <li>
                                        <a href="register.php">Start Selling</a>
                                    </li>
-                                   
+
                                    <li><a href="login.php">My Account</a> </li>
 
                                </ul>
@@ -156,7 +166,7 @@
                    <div class="col-xxl-3 d-none d-xxl-inline-block">
                        <div class="header-options">
                            <div class="vertical-slider no-arrow">
-                                
+
                            </div>
                        </div>
                    </div>
