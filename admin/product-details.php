@@ -153,6 +153,7 @@ if (isset($_GET['product'])) {
                                         <button class='btn btn-secondary' type='button'>Check Availability</button>
                                     </div>
                                         ";
+                                   
                                     }
 
 
