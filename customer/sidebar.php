@@ -16,9 +16,7 @@
         </ul>
     </li>
     <li><a class="sidebar-header" href="sold-products.php"><i data-feather="dollar-sign"></i><span>All Sales</span><i class="fa fa-angle-right pull-right"></i></a> </li>
-
-
-    <li><a class="sidebar-header" href=""><i data-feather="camera"></i><span>Media</span></a></li>
+    <li><a class="sidebar-header" href="shopping-cart.php"><i data-feather="camera"></i><span>Shopping Cart</span></a></li>
     <li><a class="sidebar-header" href="#"><i data-feather="align-left"></i><span>Menus</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
             <li><a href="menu-list.html"><i class="fa fa-circle"></i>Menu Lists</a></li>

@@ -13,12 +13,14 @@ if (isset($_GET['product'])) {
             $globalproductprice = $fetch['product_price'];
             $globalproductid = $fetch['product_id'];
             $globalproductimage = $fetch['product_images'];
+            $globalproductuserid = $fetch['product_user_id'];
         }
         global $globalproductname;
         global $globalproductprice;
         global $globalproductdesc;
         global $globalproductid;
         global $globalproductimage;
+        global $globalproductuserid;
     }
 } else {
     echo "<script>window.location.replace('my-products.php');</script>";
@@ -140,16 +142,22 @@ if (isset($_GET['product'])) {
                                     </div>
 
                                     <hr>
-                                    <h6 class="product-title size-text">
-                                        <span class="pull-right">
-                                            <a href="" data-bs-toggle="modal" data-bs-target="#sizemodal">size chart</a>
-                                        </span>
-                                    </h6>
- 
-                                    <div class="m-t-15">
-                                        <button class="btn btn-primary m-r-10" type="button">Add To Cart</button>
-                                        <button class="btn btn-secondary" type="button">Buy Now</button>
+
+                                    <?php
+
+
+                                    if ($globalloggedinid == $globalproductuserid) {
+                                        echo "
+                                        <div class='m-t-15'>
+                                        <a href='add-to-cart.php?product=$globalproductid' class='btn btn-primary m-r-10' type='button'>Add To Cart</a>
+                                        <button class='btn btn-secondary' type='button'>Check Availability</button>
                                     </div>
+                                        ";
+                                    }
+
+
+                                    ?>
+
                                 </div>
                             </div>
                         </div>
