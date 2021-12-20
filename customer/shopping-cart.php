@@ -28,7 +28,7 @@ include 'customer.php';
 
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/datatables.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/toastr.min.css">
@@ -106,76 +106,83 @@ include 'customer.php';
                 ?>
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="row products-admin ratio_asos">
-                        <?php
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Manage Order</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr>
+                                                <th>Product Image</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Product Category</th>
+                                                <th>Product SUbCategory</th>
+                                                <th>Contact Seller</th>
+                                                <th>Remove Item</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
 
-                        $products = "SELECT * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_details_order_id WHERE orders.order_buyer_user_id='$globalloggedinid' ";
-                        $queryproducts = mysqli_query($conn, $products);
-                        $queryproductsrows = mysqli_num_rows($queryproducts);
-                        if ($queryproductsrows >= 1) {
-                            while ($fetch = mysqli_fetch_assoc($queryproducts)) {
-                                $orderref = $fetch['order_ref'];
-                                $date = $fetch['order_date'];
-                                $orderid = $fetch['order_id'];
-                                $buyer = $fetch['order_buyer_user_id'];
-                                $checkcategory = "SELECT * FROM `order_details` WHERE `order_details_order_id`='$orderid'";
-                                $querycategory = mysqli_query($conn, $checkcategory);
-                                while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
-                                    $productfetchid = $fetchsubcategory['order_details_product_id'];
-                                }
-                                $checkproduct = "SELECT * FROM `products` WHERE `product_id`='$productfetchid'";
-                                $queryproduct = mysqli_query($conn, $checkproduct);
-                                while ($fetchcategory = mysqli_fetch_assoc($queryproduct)) {
-                                    $productpic = $fetchcategory['product_images'];
-                                    $name = $fetchcategory['product_name'];
-                                    $price = $fetchcategory['product_price'];
-                                }
-                                echo "
-                                <div class='col-xl-3 col-sm-6'>
-                                <div class='card'>
-                                    <div class='card-body product-box'>
-                                        <div class='img-wrapper'>
-                                            <div class='front'>
-                                                <a href=''><img src='../products/$productpic' class='img-fluid blur-up lazyload bg-img' alt=''></a>
-                                                <div class='product-hover'>
-                                                    <ul>
-                                                        <li>
-                                                            <a href='' class='btn' title='Edit Product'><i class='ti-pencil-alt'></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href='' class='btn'  title='Delete Product'><i class='ti-trash'></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class='product-detail'>
-    
-                                            <a href=''>
-                                                <h6>$name</h6>
-                                            </a>
-                                            <h4>Kshs. $price </h4>
-                                              <a href='contact-seller.php?cartitem=$orderid' class='btn btn-success btn-block mt-1'>Contact Seller</a>
-                                              <a href='delete-cart-item.php?cartitem=$orderid' class='btn btn-warning btn-block mt-1'>Remove Item</a>
-                                        </div>
-                                    </div>
+                                            $products = "SELECT * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_details_order_id WHERE orders.order_buyer_user_id='$globalloggedinid' ";
+                                            $queryproducts = mysqli_query($conn, $products);
+                                            $queryproductsrows = mysqli_num_rows($queryproducts);
+                                            if ($queryproductsrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryproducts)) {
+                                                    $orderref = $fetch['order_ref'];
+                                                    $date = $fetch['order_date'];
+                                                    $orderid = $fetch['order_id'];
+                                                    $buyer = $fetch['order_buyer_user_id'];
+                                                    $checkcategory = "SELECT * FROM `order_details` WHERE `order_details_order_id`='$orderid'";
+                                                    $querycategory = mysqli_query($conn, $checkcategory);
+                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
+                                                        $productfetchid = $fetchsubcategory['order_details_product_id'];
+                                                    }
+                                                    $checkproduct = "SELECT * FROM `products` WHERE `product_id`='$productfetchid'";
+                                                    $queryproduct = mysqli_query($conn, $checkproduct);
+                                                    while ($fetchcategory = mysqli_fetch_assoc($queryproduct)) {
+                                                        $productpic = $fetchcategory['product_images'];
+                                                        $name = $fetchcategory['product_name'];
+                                                        $price = $fetchcategory['product_price'];
+                                                        $categoryid = $fetchcategory['product_category_id'];
+                                                        $subcategoryid = $fetchcategory['product_sub_category_id'];
+                                                    }
+                                                    $checksubcategory = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$subcategoryid'";
+                                                    $querysubcategory = mysqli_query($conn, $checksubcategory);
+                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querysubcategory)) {
+                                                        $subcategoryname = $fetchsubcategory['sub_category_name'];
+                                                    }
+                                                    $checkcat = "SELECT * FROM `categories` WHERE `category_id`='$categoryid'";
+                                                    $querycat = mysqli_query($conn, $checkcat);
+                                                    while ($fetchcategory = mysqli_fetch_assoc($querycat)) {
+                                                        $categoryname = $fetchcategory['category_name'];
+                                                    }
+                                                    echo "
+                                                    <tr>
+                                                        <td><a href=''><img src='../products/$productpic' class='img-fluid' alt='' style='height:100px;'></a></td>
+                                                        <td>$name</td>
+                                                        <td>Kshs. $price</td>
+                                                        <td>$categoryname</td>
+                                                        <td>$subcategoryname</td>
+                                                        <td><a href='contact-product-owner.php?cartitem=$productfetchid' class='btn btn-success'>07XXXXXXX</a></td>
+                                                        <td><a href='delete-cart-item.php?cartitem=$categoryid' class='btn btn-warning'>Delete </a></td>
+
+                                                    </tr>";
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-    
-                                ";
-                            }
-                        } else {
-                            echo "
-                                <div class ='col-lg-12 col-xs-12'>
-                                    <div class='card'>
-                                    <div class='product-detail' style='padding:1rem;'>
-                                        <center><strong>No Products Added.</strong></center>
-                                    </div>
-                                    </div>
-                                </div>
-                                ";
-                        }
-                        ?>
+                        </div>
+                    </div>
+                    <div class="row products-admin ratio_asos">
+
 
                     </div>
                 </div>
@@ -201,7 +208,8 @@ include 'customer.php';
 
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
-
+    <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/datatables/custom-basic.js"></script>
 
     <!-- lazyload js-->
     <script src="assets/js/lazysizes.min.js"></script>
