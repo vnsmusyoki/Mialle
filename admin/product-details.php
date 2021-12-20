@@ -150,7 +150,7 @@ if (isset($_GET['product'])) {
                                         echo "
                                         <div class='m-t-15'>
                                         <a href='add-to-cart.php?product=$globalproductid' class='btn btn-primary m-r-10' type='button'>Add To Cart</a>
-                                        <button class='btn btn-secondary' type='button'>Check Availability</button>
+                                         
                                     </div>
                                         ";
                                    

@@ -170,7 +170,7 @@ include 'customer.php';
                                                         <td>$categoryname</td>
                                                         <td>$subcategoryname</td>
                                                         <td><a href='contact-product-owner.php?cartitem=$productfetchid' class='btn btn-success'>07XXXXXXX</a></td>
-                                                        <td><a href='delete-cart-item.php?cartitem=$categoryid' class='btn btn-warning'>Delete </a></td>
+                                                        <td><a href='delete-cart-item.php?cartitem=$orderid' class='btn btn-warning'>Delete </a></td>
                                                         <td><a href='rate-product.php?orderid=$orderid&cartitem=$productfetchid' class='btn btn-primary'>Rate  </a></td>
 
                                                     </tr>";

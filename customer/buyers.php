@@ -108,36 +108,8 @@ include 'customer.php';
                 <div class="container-fluid">
                     <div class="row products-admin ratio_asos">
                         <?php
-                        $email_username = $_SESSION['customer'];
-                        $checkemail = "SELECT *  FROM `login` WHERE `login_email` = '$email_username' OR `login_username`= '$email_username'";
-                        $queryemail = mysqli_query($conn, $checkemail);
-                        $checkemailrows = mysqli_num_rows($queryemail);
-                        if ($checkemailrows >= 1) {
-                            while ($fetch = mysqli_fetch_assoc($queryemail)) {
-                                $globalusername = $fetch['login_username'];
-                                $globalemail = $fetch['login_email'];
-                                $globalloggedinid = $fetch['login_id'];
-                                $checkcustomer = "SELECT *  FROM `users` WHERE `user_login_id` = '$globalloggedinid'";
-                                $querycustomer = mysqli_query($conn, $checkcustomer);
 
-                                while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
-                                    $globalname = $fetchcustomer['user_name'];
-                                    $globalcontact = $fetchcustomer['user_contact'];
-                                    $globallocation = $fetchcustomer['user_location'];
-                                    $globaluserid = $fetchcustomer['user_id'];
-                                }
-
-
-                                global $globalusername;
-                                global $globalemail;
-                                global $globalname;
-                                global $globalcontact;
-                                global $globallocation;
-                                global $globalloggedinid;
-                                global $globaluserid;
-                            }
-                        }
-                        $products = "SELECT * FROM `products` WHERE `product_user_id` != '$globaluserid'";
+                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalloggedinid'";
                         $queryproducts = mysqli_query($conn, $products);
                         $queryproductsrows = mysqli_num_rows($queryproducts);
                         if ($queryproductsrows >= 1) {
@@ -166,18 +138,25 @@ include 'customer.php';
                                             <div class='front'>
                                                 <a href='product-details.php?product=$productid'><img src='../products/$image' class='img-fluid blur-up lazyload bg-img' alt=''></a>
                                                 <div class='product-hover'>
-                                                     
+                                                    <ul>
+                                                        <li>
+                                                            <a href='edit-product.php?product=$productid' class='btn' title='Edit Product'><i class='ti-pencil-alt'></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href='delete-product.php?product=$productid' class='btn'  title='Delete Product'><i class='ti-trash'></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class='product-detail'>
     
-                                            <a href='product-details.php?product=$productid'>
+                                            <a href='buyers-list.php?product=$productid'>
                                                 <h6>$name</h6>
                                             </a>
                                             <h4>Kshs. $price </h4>
                                              <h6>$categoryname - $subcategoryname</h6>
-                                             <a href='product-details.php?product=$productid' class='btn btn-warning'>Shop Now</a>
+                                             <a href='buyers-list.php?product=$productid' class='btn btn-warning'>Buyers</a>
                                         </div>
                                     </div>
                                 </div>

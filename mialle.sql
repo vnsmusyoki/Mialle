@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2021 at 03:42 PM
+-- Generation Time: Dec 20, 2021 at 11:25 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -41,7 +41,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_first_name`, `admin_last_name`, `admin_mobile`, `admin_email`, `admin_login_id`) VALUES
-(1, 'joseph', 'josehe', '0733662277', 'joseph@gmail.com', 7);
+(1, 'joseph', 'josehe', '0733662277', 'joseph@gmail.com', 7),
+(2, 'kffkfk', 'kdodod', '0722882288', 'checked@gmail.com', 8);
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,10 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_desc`) VALUES
 (1, 'Electronics', 'for all electric appliances updated'),
-(2, 'Laptops', 'all the best laptop deals');
+(2, 'Health and Beauty', 'all the best laptop deals'),
+(3, 'Phones and Tablets', 'All digital hand gadgets'),
+(4, 'Fashion and Design', 'Designer clothes'),
+(5, 'Others', 'All other categories not listed above');
 
 -- --------------------------------------------------------
 
@@ -82,7 +86,7 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`feedback_id`, `feedback_user_id`, `feedback_comment`, `feedback_rating`, `feedback_order_id`) VALUES
-(9, 7, 'hyyhyhyhyhyhyh', 'Poor', 2);
+(10, 10, 'ratedssds', 'Poor', 12);
 
 -- --------------------------------------------------------
 
@@ -105,7 +109,10 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`login_id`, `login_username`, `login_password`, `login_email`, `login_rank`) VALUES
 (5, 'intruder', '48cccca3bab2ad18832233ee8dff1b0b', 'vnsmusyoki@gmail.com', 'admin'),
 (6, 'mercyline', '5f4dcc3b5aa765d61d8327deb882cf99', 'mercy@gmail.com', 'customer'),
-(7, 'josejose', '5f4dcc3b5aa765d61d8327deb882cf99', 'joseph@gmail.com', 'admin');
+(7, 'josejose', '5f4dcc3b5aa765d61d8327deb882cf99', 'joseph@gmail.com', 'admin'),
+(8, 'checkedde', '5f4dcc3b5aa765d61d8327deb882cf99', 'checked@gmail.com', 'admin'),
+(9, 'testinguser', '5f4dcc3b5aa765d61d8327deb882cf99', 'testinguser@gmail.com', 'customer'),
+(10, 'onesmuscheck', '5f4dcc3b5aa765d61d8327deb882cf99', 'onesmus@gmail.com', 'customer');
 
 -- --------------------------------------------------------
 
@@ -125,7 +132,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_ref`, `order_date`, `order_buyer_user_id`) VALUES
-(2, '6', '2020-12-21', 7);
+(3, '6', '2020-12-21', 5),
+(8, '6', '2020-12-21', 9),
+(9, '6', '2020-12-21', 9),
+(10, '6', '2020-12-21', 9),
+(12, '6', '2020-12-21', 10);
 
 -- --------------------------------------------------------
 
@@ -144,7 +155,11 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`order_details_id`, `order_details_order_id`, `order_details_product_id`) VALUES
-(2, 2, 13);
+(3, 3, 14),
+(8, 8, 10),
+(9, 9, 56),
+(10, 10, 9),
+(12, 12, 56);
 
 -- --------------------------------------------------------
 
@@ -191,7 +206,8 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `pr
 (9, 'China make', 'all checedkekded', 566, 5, '61bfc75d702453.30900070.jpg', 1, 1),
 (10, 'China make', 'High-performing creativity tool\r\nThe Lenovo ThinkBook 16p Gen 2 (16\" AMD) business laptop will power you through your workday—and look good doing it. With up to the AMD Ryzen™ 9 5900HX 8-core/16-thread Mobile Processor and NVIDIA® GeForce RTX™ 3060 graphics, you can easily accomplish your toughest, most creative tasks. Rigid security, 2.5K (2560 x 1600) resolution, and other smart features round out the package.', 70000, 5, '61bfc74c5e6524.16160558.jpg', 1, 1),
 (13, 'ThinkBook 16p Gen 2', 'Gamers don’t have to feel bound to their desktops anymore. Legion by Lenovo lets you dominate your competitors wherever you are. Are you hardcore? We’ve got you covered with laptops that boast powerful discrete graphics and overclockable CPUs. We’ve also got budget options for casual gamers. But whatever laptop you choose will let you lose yourself in immersive audio and vivid displays.', 90000, 5, '61bf992e076157.27138231.jpg', 1, 1),
-(14, 'heater sink', 'byt today', 6000, 6, '61c06ee704e274.44404888.jpg', 2, 2);
+(14, 'heater sink', 'byt today', 6000, 6, '61c06ee704e274.44404888.jpg', 2, 2),
+(56, 'ThinkBook 16p Gen 5', 'dededed', 6000, 7, '61c0f76f429992.38078538.jpg', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -212,7 +228,8 @@ CREATE TABLE `sub_categories` (
 
 INSERT INTO `sub_categories` (`sub_category_id`, `sub_category_name`, `sub_category_desc`, `sub_category_category_id`) VALUES
 (1, 'Extensions', 'All Quality ones', 1),
-(2, 'Dell', 'best laptops seen updates', 1);
+(2, 'Dell', 'best laptops seen updates', 1),
+(3, 'shoes', 'best retailing shoes', 4);
 
 -- --------------------------------------------------------
 
@@ -234,7 +251,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_contact`, `user_location`, `user_login_id`) VALUES
 (5, 'evans kimeu musyoki', '0720882594', 'Mombasa', 5),
-(6, 'mercy meryc', '0733993388', 'Nairobi', 6);
+(6, 'mercy meryc', '0733993388', 'Nairobi', 6),
+(7, 'testing', '0722883388', 'Nairobi', 9),
+(8, 'chdk djdjd jdj', '0722990099', 'Nakuru', 10);
 
 --
 -- Indexes for dumped tables
@@ -316,37 +335,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pickup_points`
@@ -358,19 +377,19 @@ ALTER TABLE `pickup_points`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

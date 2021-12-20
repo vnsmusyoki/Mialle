@@ -12,6 +12,11 @@
                     <span>Upload New </span> <i class="fa fa-angle-right pull-right"></i>
                 </a>
             </li>
+            <li>
+                <a href="buyers-list.php"><i class="fa fa-circle"></i>
+                    <span>Buyers</span> <i class="fa fa-angle-right pull-right"></i>
+                </a>
+            </li>
         </ul>
     </li>
     <li><a class="sidebar-header" href="pick-points.php"><i data-feather="dollar-sign"></i><span>My Pick Points</span><i class="fa fa-angle-right pull-right"></i></a> </li>
@@ -28,13 +33,13 @@
         </ul>
     </li>
     
-    <li><a class="sidebar-header" href=""><i data-feather="users"></i><span>Admin</span><i class="fa fa-angle-right pull-right"></i></a>
+    <!-- <li><a class="sidebar-header" href=""><i data-feather="users"></i><span>Admin</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
             <li><a href="add-admin.php"><i class="fa fa-circle"></i>Add New</a></li>
             <li><a href="all-admins.php"><i class="fa fa-circle"></i>SubCategory List</a></li>
              
         </ul>
-    </li>
+    </li> -->
     <li><a class="sidebar-header" href="reports.php"><i data-feather="bar-chart"></i><span>Reports</span></a></li>
     <li><a class="sidebar-header" href="logout.php"><i data-feather="log-in"></i><span>Log Out</span></a>
     </li>

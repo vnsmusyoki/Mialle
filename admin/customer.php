@@ -20,6 +20,7 @@ if (!isset($_SESSION['admin'])) {
                     $globalname = $fetchcustomer['user_name'];
                     $globalcontact = $fetchcustomer['user_contact'];
                     $globallocation = $fetchcustomer['user_location'];
+                    $globaluserid = $fetchcustomer['user_id'];
                 }
             }
 
@@ -29,6 +30,7 @@ if (!isset($_SESSION['admin'])) {
             global $globalcontact;
             global $globallocation;
             global $globalloggedinid;
+            global $globaluserid;
         }
     }
 }

@@ -1,4 +1,6 @@
-<?php include 'customer.php'; ?>
+<?php include 'customer.php';
+
+?>
 <?php $product_name =  $product_price = $product_description = $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">

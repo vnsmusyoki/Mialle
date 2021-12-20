@@ -50,7 +50,7 @@ if (isset($_GET['product'])) {
 
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/datatables.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/toastr.min.css">
@@ -141,45 +141,16 @@ if (isset($_GET['product'])) {
                                         <h3>Kshs. <?php echo $globalproductprice; ?></h3>
                                     </div>
 
-
+                                    <hr>
 
                                     <?php
-                                    include '../db-connection.php';
-                                    $email_username = $_SESSION['customer'];
-                                    $checkemail = "SELECT *  FROM `login` WHERE `login_email` = '$email_username' OR `login_username`= '$email_username'";
-                                    $queryemail = mysqli_query($conn, $checkemail);
-                                    $checkemailrows = mysqli_num_rows($queryemail);
-                                    if ($checkemailrows >= 1) {
-                                        while ($fetch = mysqli_fetch_assoc($queryemail)) {
-                                            $globalusername = $fetch['login_username'];
-                                            $globalemail = $fetch['login_email'];
-                                            $globalloggedinid = $fetch['login_id'];
-                                            $checkcustomer = "SELECT *  FROM `users` WHERE `user_login_id` = '$globalloggedinid'";
-                                            $querycustomer = mysqli_query($conn, $checkcustomer);
-
-                                            while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
-                                                $globalname = $fetchcustomer['user_name'];
-                                                $globalcontact = $fetchcustomer['user_contact'];
-                                                $globallocation = $fetchcustomer['user_location'];
-                                                $globaluserid = $fetchcustomer['user_id'];
-                                            }
 
 
-                                            global $globalusername;
-                                            global $globalemail;
-                                            global $globalname;
-                                            global $globalcontact;
-                                            global $globallocation;
-                                            global $globalloggedinid;
-                                            global $globaluserid;
-                                        }
-                                    }
-                                 
-                                    if ($globaluserid !== $globalproductuserid) {
+                                    if ($globalloggedinid !== $globalproductuserid) {
                                         echo "
                                         <div class='m-t-15'>
                                         <a href='add-to-cart.php?product=$globalproductid' class='btn btn-primary m-r-10' type='button'>Add To Cart</a>
-                                         
+                                        <button class='btn btn-secondary' type='button'>Check Availability</button>
                                     </div>
                                         ";
                                     }
@@ -193,39 +164,98 @@ if (isset($_GET['product'])) {
                     </div>
                 </div>
                 <!-- Container-fluid Ends-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Manage Buyers List</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr> 
+                                                <th>Name</th>
+                                                <th>Contact</th> 
+                                                <th>Location</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                    include '../db-connection.php';
+                                           $orderdetails = "SELECT * FROM order_details  WHERE order_details_product_id='$globalproductid'";
+                                            $queryorderdetails = mysqli_query($conn, $orderdetails);
+                                            $queryproductsrows = mysqli_num_rows($queryorderdetails);
+                                            if ($queryproductsrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryorderdetails)) {
+
+                                                    $orderid = $fetch['order_details_order_id'];
+
+                                                    $checkcategory = "SELECT * FROM `orders` WHERE `order_id`='$orderid'";
+                                                    $querycategory = mysqli_query($conn, $checkcategory);
+                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
+                                                        $buyerid = $fetchsubcategory['order_buyer_user_id'];
+                                                        $checkproduct = "SELECT * FROM `users` WHERE `user_id`='$buyerid'";
+                                                        $queryproduct = mysqli_query($conn, $checkproduct);
+                                                        while ($fetchcategory = mysqli_fetch_assoc($queryproduct)) {
+                                                            $name = $fetchcategory['user_name'];
+                                                            $location = $fetchcategory['user_location'];
+                                                            $contact = $fetchcategory['user_contact']; 
+                                                            echo "
+                                                    <tr>
+                                                        
+                                                        <td>$name</td>
+                                                        <td>$contact</td>
+                                                        <td>$location</td>
+                                                         
+
+                                                    </tr>";
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <?php include 'footer.php'; ?>
 
             </div>
 
-            <?php include 'footer.php'; ?>
-
         </div>
 
-    </div>
+        <!-- latest jquery-->
+        <script src="assets/js/jquery-3.3.1.min.js"></script>
 
-    <!-- latest jquery-->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap js-->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap js-->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!-- feather icon js-->
+        <script src="assets/js/icons/feather-icon/feather.min.js"></script>
+        <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
 
-    <!-- feather icon js-->
-    <script src="assets/js/icons/feather-icon/feather.min.js"></script>
-    <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
+        <!-- Sidebar jquery-->
+        <script src="assets/js/sidebar-menu.js"></script>
+        <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/js/datatables/custom-basic.js"></script>
 
-    <!-- Sidebar jquery-->
-    <script src="assets/js/sidebar-menu.js"></script>
+        <!--Customizer admin-->
+        <!-- <script src="assets/js/admin-customizer.js"></script> -->
 
-    <!--Customizer admin-->
-    <!-- <script src="assets/js/admin-customizer.js"></script> -->
+        <!-- lazyload js-->
+        <script src="assets/js/lazysizes.min.js"></script>
 
-    <!-- lazyload js-->
-    <script src="assets/js/lazysizes.min.js"></script>
+        <!--right sidebar js-->
+        <script src="assets/js/chat-menu.js"></script>
 
-    <!--right sidebar js-->
-    <script src="assets/js/chat-menu.js"></script>
-
-    <!--script admin-->
-    <script src="assets/js/admin-script.js"></script>
+        <!--script admin-->
+        <script src="assets/js/admin-script.js"></script>
 
 </body>
 

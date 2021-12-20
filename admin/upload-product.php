@@ -105,7 +105,7 @@
                                     <form action="" enctype="multipart/form-data" method="POST" action="">
                                         <?php
                                         if (isset($_POST["uploadproduct"])) {
-                                            require '../functions/customer/uploadproduct.php';
+                                            require '../functions/admin/uploadproduct.php';
                                         }
                                         ?>
                                         <?php echo $message ?>
