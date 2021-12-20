@@ -34,6 +34,13 @@
              
         </ul>
     </li>
+    <li><a class="sidebar-header" href=""><i data-feather="camera"></i><span>Sub Categories</span><i class="fa fa-angle-right pull-right"></i></a>
+        <ul class="sidebar-submenu">
+            <li><a href="add-sub-category.php"><i class="fa fa-circle"></i>Add New</a></li>
+            <li><a href="all-sub-categories.php"><i class="fa fa-circle"></i>SubCategory List</a></li>
+             
+        </ul>
+    </li>
 
     <li><a class="sidebar-header" href="logout.php"><i data-feather="log-in"></i><span>Log Out</span></a>
     </li>

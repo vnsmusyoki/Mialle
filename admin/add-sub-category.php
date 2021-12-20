@@ -1,25 +1,5 @@
 <?php include 'customer.php'; ?>
-<?php
-$category_name  = $category_description = $message = '';
-if (isset($_GET['category'])) {
-    $categoryid = $_GET['category'];
-    $checkcategory = "SELECT * FROM `categories` WHERE `category_id` = '$categoryid'";
-    $querycheckcategory = mysqli_query($conn, $checkcategory);
-    $querycategoryrows = mysqli_num_rows($querycheckcategory);
-    if ($querycategoryrows >= 1) {
-        while ($fetch = mysqli_fetch_assoc($querycheckcategory)) {
-            $globalcategoryname = $fetch['category_name'];
-            $globalcategorydesc = $fetch['category_desc'];
-            $globalcategoryid = $fetch['category_id'];
-        }
-        global $globalcategoryname;
-        global $globalcategorydesc;
-        global $globalcategoryid;
-    }
-} else {
-    echo "<script>window.location.replace('all-categories.php');</script>";
-}
-?>
+<?php $category_name  = $sub_category_description = $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +11,7 @@ if (isset($_GET['category'])) {
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - Upload New Category</title>
+    <title>Mialle - Upload New SUB Category</title>
 
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
@@ -99,8 +79,8 @@ if (isset($_GET['category'])) {
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="page-header-left">
-                                    <h3>Category List
-                                        <small>Upload New Category</small>
+                                    <h3>Sub Category List
+                                        <small>Upload New Sub Category</small>
                                     </h3>
                                 </div>
                             </div>
@@ -126,26 +106,36 @@ if (isset($_GET['category'])) {
                                         <?php
                                         if (isset($_POST["uploadproduct"])) {
                                             include '../db-connection.php';
-                                            $category = mysqli_real_escape_string($conn, $_POST['category_name']);
-                                            $description = mysqli_real_escape_string($conn, $_POST['category_description']);
+                                            $category = mysqli_real_escape_string($conn, $_POST['product_category']);
+                                            $subcategory = mysqli_real_escape_string($conn, $_POST['sub_category_name']);
+                                            $description = mysqli_real_escape_string($conn, $_POST['sub_category_description']);
 
-                                            if (empty($category) || empty($description)) {
+                                            if (empty($category) || empty($description) || empty($subcategory)) {
                                                 echo   $message = "
                                                 <script>
                                                 toastr.error('Provide all the Details');
                                             </script>";
-                                            } else if (!preg_match("/^[a-zA-z ]*$/", $category)) {
+                                            } else if (!preg_match("/^[a-zA-z ]*$/", $subcategory)) {
                                                 echo $message = "
                                                     <script>
                                                         toastr.error('Provided an invalid category name');
                                                     </script>
                                                 ";
                                             } else {
-
-                                                $addcat = "UPDATE  `categories` SET `category_name`='$category', `category_desc`='$description' WHERE `category_id`='$globalcategoryid'";
-                                                $querycat = mysqli_query($conn, $addcat);
-                                                if ($querycat) {
-                                                    echo "<script>window.location.replace('all-categories.php');</script>";
+                                                $checkcategory = "SELECT *  FROM `sub_categories` WHERE `sub_category_name` = '$subcategory'";
+                                                $quercategory = mysqli_query($conn, $checkcategory);
+                                                $checkcategoryrows = mysqli_num_rows($quercategory);
+                                                if ($checkcategoryrows >= 1) {
+                                                    echo  $message = "
+                                                    <script>
+                                                        toastr.error('Sub Category Name already exists.');
+                                                    </script>";
+                                                } else {
+                                                    $addcat = "INSERT INTO `sub_categories`(`sub_category_name`,`sub_category_category_id`, `sub_category_desc`) VALUES ('$subcategory', '$category','$description')";
+                                                    $querycat = mysqli_query($conn, $addcat);
+                                                    if ($querycat) {
+                                                        echo "<script>window.location.replace('all-sub-categories.php');</script>";
+                                                    }
                                                 }
                                             }
                                         }
@@ -153,24 +143,40 @@ if (isset($_GET['category'])) {
                                         <?php echo $message ?>
                                         <div class="form-row row">
                                             <div class="col-md-12 mb-4">
-                                                <label for="name">Category Name</label>
-                                                <input type="text" class="form-control" id="fname" placeholder="Write Category Name here" name="category_name" value="<?php echo $globalcategoryname; ?>" style="text-transform:capitalize;">
+                                                <label for="name">Sub Category Name</label>
+                                                <input type="text" class="form-control" id="fname" placeholder="Write Sub Category Name here" name="sub_category_name" value="<?php echo $category_name; ?>" style="text-transform:capitalize;">
                                             </div>
                                             <br>
                                         </div>
-                                        <div class="form-row row mb-5">
-                                            <div class="col-md-12">
-                                                <label for="name">Category Description</label>
-                                                <textarea name="category_description" class="form-control" id="" cols="30" rows="10"><?php echo $globalcategorydesc; ?></textarea>
+                                        <div class="form-row row">
+                                            <div class="col-md-12 mb-4">
+                                                <label for="name">Product Category</label>
+                                                <select name="product_category" id="" class="form-control">
+                                                    <option value="">Select product category</option>
+                                                    <?php
+                                                    $categories = "SELECT * FROM `categories`";
+                                                    $querycategory = mysqli_query($conn, $categories);
+                                                    while ($fetch = mysqli_fetch_assoc($querycategory)) {
+                                                        $categoryname = $fetch['category_name'];
+                                                        $categoryid = $fetch['category_id'];
+                                                        echo "<option value='$categoryid'>$categoryname</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-row row mb-5">
+                                                <div class="col-md-12">
+                                                    <label for="name">Subcategory Description</label>
+                                                    <textarea name="sub_category_description" class="form-control" id="" cols="30" rows="10"><?php echo $sub_category_description; ?></textarea>
+                                                </div>
+
                                             </div>
 
-                                        </div>
-
-                                        <div class="imgGallery">
-                                            <!-- image preview -->
-                                        </div>
-                                        <br>
-                                        <button type="submit" class="btn btn-solid w-auto" name="uploadproduct">Update Category</button>
+                                            <div class="imgGallery">
+                                                <!-- image preview -->
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="btn btn-solid w-auto" name="uploadproduct">Upload Category</button>
                                     </form>
                                 </div>
                             </div>
