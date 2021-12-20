@@ -409,8 +409,8 @@
     </section>
     <!-- Home slider end -->
 
- <!-- collection banner -->
- <section class="pt-0 ratio3_2">
+    <!-- collection banner -->
+    <section class="pt-0 ratio3_2">
         <div class="container-fluid p-0">
             <div class="row m-0">
                 <div class="col-lg-3 col-sm-6 p-0">
