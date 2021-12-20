@@ -157,6 +157,7 @@ include 'customer.php';
                                             </a>
                                             <h4>Kshs. $price </h4>
                                              <h6>$categoryname - $subcategoryname</h6>
+                                             <a href='feedbacks.php?product=$productid' class='btn btn-warning'>Feed backs</a>
                                         </div>
                                     </div>
                                 </div>
