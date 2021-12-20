@@ -41,6 +41,190 @@
 
 <body class="theme-color-1">
 
+    <!-- loader start -->
+    <div class="loader_skeleton">
+        <header>
+            <div class="top-header d-none d-sm-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="header-contact">
+                                <ul>
+                                    <li>Welcome to Our store Multikart</li>
+                                    <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 - 7890</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-end">
+                            <ul class="header-dropdown">
+                                <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart"
+                                            aria-hidden="true"></i></a>
+                                </li>
+                                <li class="onhover-dropdown mobile-account">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Account
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="main-menu">
+                            <div class="menu-left">
+                                <div class="navbar">
+                                    <a href="javascript:void(0)">
+                                        <div class="bar-style"><i class="fa fa-bars sidebar-bar" aria-hidden="true"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="brand-logo">
+                                    <a href="index.html"><img src="../assets/images/icon/logo.png"
+                                            class="img-fluid blur-up lazyload" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="menu-right pull-right">
+                                <div>
+                                    <nav>
+                                        <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                                        <ul class="sm pixelstrap sm-horizontal">
+                                            <li>
+                                                <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2"
+                                                        aria-hidden="true"></i></div>
+                                            </li>
+                                            <li>
+                                                <a href="index.html">Home</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">feature<div class="lable-nav">new</div></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">shop</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">product</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">pages</a>
+                                            </li>
+                                            <li><a href="#">blog</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div>
+                                    <div class="icon-nav d-none d-sm-block">
+                                        <ul>
+                                            <li class="onhover-div mobile-search">
+                                                <div><img src="../assets/images/icon/search.png" onclick="openSearch()"
+                                                        class="img-fluid blur-up lazyload" alt=""> <i class="ti-search"
+                                                        onclick="openSearch()"></i></div>
+                                            </li>
+                                            <li class="onhover-div mobile-setting">
+                                                <div><img src="../assets/images/icon/setting.png"
+                                                        class="img-fluid blur-up lazyload" alt=""> <i
+                                                        class="ti-settings"></i></div>
+                                            </li>
+                                            <li class="onhover-div mobile-cart">
+                                                <div><img src="../assets/images/icon/cart.png"
+                                                        class="img-fluid blur-up lazyload" alt=""> <i
+                                                        class="ti-shopping-cart"></i></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="breadcrumb-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="page-title">
+                            <h2>product</h2>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">product</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="section-b-space ratio_asos">
+            <div class="collection-wrapper product-page">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="main-product lg-img"></div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="sm-product"></div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="sm-product"></div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="sm-product"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="product-right">
+                                            <h2></h2>
+                                            <h4></h4>
+                                            <h3></h3>
+                                            <ul>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                            </ul>
+                                            <div class="btn-group">
+                                                <div class="btn-ldr"></div>
+                                                <div class="btn-ldr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="tab-product m-0">
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-12">
+                                        <ul>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                        </ul>
+                                        <p></p>
+                                        <p></p>
+                                        <p></p>
+                                        <p></p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- loader end -->
+
 
     <!-- header start -->
     <header>
@@ -668,67 +852,7 @@
     <!-- header end -->
 
 
-    <!-- breadcrumb start -->
-    <div class="breadcrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="page-title">
-                        <h2>create account</h2>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">create account</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- breadcrumb End -->
-
-
-    <!--section start-->
-    <section class="register-page section-b-space">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3>create account</h3>
-                    <div class="theme-card">
-                        <form class="theme-form">
-                            <div class="form-row row">
-                                <div class="col-md-6">
-                                    <label for="email">First Name</label>
-                                    <input type="text" class="form-control" id="fname" placeholder="First Name"
-                                        required="">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="review">Last Name</label>
-                                    <input type="password" class="form-control" id="lname" placeholder="Last Name"
-                                        required="">
-                                </div>
-                            </div>
-                            <div class="form-row row">
-                                <div class="col-md-6">
-                                    <label for="email">email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Email" required="">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="review">Password</label>
-                                    <input type="password" class="form-control" id="review"
-                                        placeholder="Enter your password" required="">
-                                </div><a href="#" class="btn btn-solid w-auto">create Account</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Section ends-->
+  
 
 
     <!-- footer start -->
@@ -869,6 +993,27 @@
         </div>
     </footer>
     <!-- footer end -->
+
+
+    <!-- recently purchase product -->
+    <div class="media recently-purchase">
+        <img src="../assets/images/pro3/sm.jpg" alt="Floral Dress ">
+        <div class="media-body">
+            <div>
+                <div class="title">
+                    Some recently purchase this item
+                </div>
+                <a href="#">
+                    <span class="product-name">
+                        Floral Dress
+                    </span>
+                </a>
+                <small class="timeAgo">50 minutes ago</small>
+            </div>
+        </div>
+        <a href="javascript:void(0)" class="close-popup fa fa-times"></a>
+    </div>
+    <!-- recently purchase product -->
 
 
     <!-- theme setting -->
@@ -1490,11 +1635,175 @@
     <!-- theme setting -->
 
 
+    <!-- Add to cart modal popup start-->
+    <div class="modal fade bd-example-modal-lg theme-modal cart-modal" id="addtocart" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body modal1">
+                    <div class="container-fluid p-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="modal-bg addtocart">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <div class="media">
+                                        <a href="#">
+                                            <img class="img-fluid blur-up lazyload pro-img"
+                                                src="../assets/images/fashion/product/43.jpg" alt="">
+                                        </a>
+                                        <div class="media-body align-self-center text-center">
+                                            <a href="#">
+                                                <h6>
+                                                    <i class="fa fa-check"></i>Item
+                                                    <span>men full sleeves</span>
+                                                    <span> successfully added to your Cart</span>
+                                                </h6>
+                                            </a>
+                                            <div class="buttons">
+                                                <a href="#" class="view-cart btn btn-solid">Your cart</a>
+                                                <a href="#" class="checkout btn btn-solid">Check out</a>
+                                                <a href="#" class="continue btn btn-solid">Continue shopping</a>
+                                            </div>
+
+                                            <div class="upsell_payment">
+                                                <img src="../assets/images/payment_cart.png"
+                                                    class="img-fluid blur-up lazyload" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-section">
+                                        <div class="col-12 product-upsell text-center">
+                                            <h4>Customers who bought this item also.</h4>
+                                        </div>
+                                        <div class="row" id="upsell_product">
+                                            <div class="product-box col-sm-3 col-6">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="#">
+                                                            <img src="../assets/images/fashion/product/1.jpg"
+                                                                class="img-fluid blur-up lazyload mb-1"
+                                                                alt="cotton top">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <h6><a href="#"><span>cotton top</span></a></h6>
+                                                        <h4><span>$25</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-box col-sm-3 col-6">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="#">
+                                                            <img src="../assets/images/fashion/product/34.jpg"
+                                                                class="img-fluid blur-up lazyload mb-1"
+                                                                alt="cotton top">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <h6><a href="#"><span>cotton top</span></a></h6>
+                                                        <h4><span>$25</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-box col-sm-3 col-6">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="#">
+                                                            <img src="../assets/images/fashion/product/13.jpg"
+                                                                class="img-fluid blur-up lazyload mb-1"
+                                                                alt="cotton top">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <h6><a href="#"><span>cotton top</span></a></h6>
+                                                        <h4><span>$25</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-box col-sm-3 col-6">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="#">
+                                                            <img src="../assets/images/fashion/product/19.jpg"
+                                                                class="img-fluid blur-up lazyload mb-1"
+                                                                alt="cotton top">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <h6><a href="#"><span>cotton top</span></a></h6>
+                                                        <h4><span>$25</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add to cart modal popup end-->
+
+
+    <!-- sticky cart bottom start -->
+    <div class="sticky-bottom-cart d-sm-block d-none">
+        <div class="container">
+            <div class="cart-content">
+                <div class="product-image">
+                    <img src="../assets/images/pro3/1.jpg" class="img-fluid" alt="">
+                    <div class="content d-lg-block d-none">
+                        <h5>WOMEN PINK SHIRT</h5>
+                        <h6>$32.96<del>$459.00</del><span>55% off</span></h6>
+                    </div>
+                </div>
+                <div class="selection-section">
+                    <div class="form-group mb-0">
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose color...</option>
+                            <option>pink</option>
+                            <option>blue</option>
+                            <option>grey</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-0">
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose size...</option>
+                            <option>small</option>
+                            <option>medium</option>
+                            <option>large</option>
+                            <option>extra large</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="add-btn">
+                    <a data-bs-toggle="modal" data-bs-target="#addtocart" href="" class="btn btn-solid btn-sm">add to
+                        cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sticky cart bottom end -->
+
+
     <!-- tap to top start -->
     <div class="tap-top">
         <div><i class="fa fa-angle-double-up"></i></div>
     </div>
     <!-- tap to top end -->
+
+
+    <!-- added to cart notification -->
+    <div class="added-notification">
+        <img src="../assets/images/fashion/pro/1.jpg" class="img-fluid" alt="">
+        <h3>added to cart</h3>
+    </div>
+    <!-- added to cart notification -->
 
 
     <!-- latest jquery-->
@@ -1506,14 +1815,23 @@
     <!-- lazyload js-->
     <script src="../assets/js/lazysizes.min.js"></script>
 
+    <!-- sticky cart bottom js-->
+    <script src="../assets/js/sticky-cart-bottom.js"></script>
+
     <!-- slick js-->
     <script src="../assets/js/slick.js"></script>
+
+    <!-- timer js-->
+    <script src="../assets/js/timer.js"></script>
 
     <!-- Bootstrap js-->
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
     <!-- Bootstrap Notification js-->
     <script src="../assets/js/bootstrap-notify.min.js"></script>
+
+    <!-- Zoom js-->
+    <script src="../assets/js/jquery.elevatezoom.js"></script>
 
     <!-- Theme js-->
     <script src="../assets/js/theme-setting.js"></script>

@@ -415,7 +415,7 @@
         <div class="container-fluid p-0">
             <div class="row m-0">
                 <div class="col-lg-3 col-sm-6 p-0">
-                    <a href="#">
+                    <a href="all-others.php">
                         <div class="collection-banner p-left">
                             <div class="img-part">
                                 <img src="assets/images/marketplace/banner/10.jpg" class="img-fluid blur-up lazyload bg-img">
@@ -423,14 +423,14 @@
                             <div class="contain-banner banner-4">
                                 <div>
                                     <h4>save 60%</h4>
-                                    <h2 class="text-dark">women</h2>
+                                    <h2 class="text-dark"></h2>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 p-0">
-                    <a href="#">
+                    <a href="electronics.php">
                         <div class="collection-banner p-left">
                             <div class="img-part">
                                 <img src="assets/images/marketplace/banner/9.jpg" class="img-fluid blur-up lazyload bg-img">
@@ -438,14 +438,14 @@
                             <div class="contain-banner banner-4">
                                 <div>
                                     <h4>save 30%</h4>
-                                    <h2 class="text-dark">men</h2>
+                                    <h2 class="text-dark"></h2>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 p-0">
-                    <a href="#">
+                    <a href="health-beauty.php">
                         <div class="collection-banner p-left">
                             <div class="img-part">
                                 <img src="assets/images/marketplace/banner/12.jpg" class="img-fluid blur-up lazyload bg-img">
@@ -453,14 +453,14 @@
                             <div class="contain-banner banner-4">
                                 <div>
                                     <h4>save 60%</h4>
-                                    <h2 class="text-dark">women</h2>
+                                    <h2 class="text-dark"></h2>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 p-0">
-                    <a href="#">
+                    <a href="phones-tablets.php">
                         <div class="collection-banner p-left">
                             <div class="img-part">
                                 <img src="assets/images/marketplace/banner/11.jpg" class="img-fluid blur-up lazyload bg-img">
@@ -468,7 +468,7 @@
                             <div class="contain-banner banner-4">
                                 <div>
                                     <h4>save 60%</h4>
-                                    <h2 class="text-dark">women</h2>
+                                    <h2 class="text-dark"></h2>
                                 </div>
                             </div>
                         </div>
@@ -490,7 +490,7 @@
 
                 <?php
                 include 'db-connection.php';
-                $products = "SELECT * FROM `products` ";
+                $products = "SELECT * FROM `products` WHERE `product_category_id`=3";
                 $queryproducts = mysqli_query($conn, $products);
                 $queryproductsrows = mysqli_num_rows($queryproducts);
                 if ($queryproductsrows >= 1) {
@@ -536,133 +536,15 @@
                     }
                 }
                 ?>
-               
-             
+
+
             </div>
         </div>
     </section>
     <!-- product end -->
 
 
-
-    <!-- footer section start -->
-    <footer class="dark-footer footer-style-1 footer-theme-color">
-        <section class="section-b-space darken-layout">
-            <div class="container">
-                <div class="row footer-theme partition-f">
-                    <div class="col-lg-4 col-md-6 sub-title">
-                        <div class="footer-title footer-mobile-title">
-                            <h4>about</h4>
-                        </div>
-                        <div class="footer-contant">
-                            <div class="footer-logo"><img src="assets/images/icon/logo/f11.png" alt=""></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore</p>
-                            <ul class="contact-list">
-                                <li><i class="fa fa-map-marker"></i>Multikart Demo Store, Demo store India 345-659
-                                </li>
-                                <li><i class="fa fa-phone"></i>Call Us: 123-456-7898</li>
-                                <li><i class="fa fa-envelope-o"></i>Email Us: <a href="#">Support@Fiot.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="sub-title">
-                            <div class="footer-title">
-                                <h4>my account</h4>
-                            </div>
-                            <div class="footer-contant">
-                                <ul>
-                                    <li><a href="#">mens</a></li>
-                                    <li><a href="#">womens</a></li>
-                                    <li><a href="#">clothing</a></li>
-                                    <li><a href="#">accessories</a></li>
-                                    <li><a href="#">featured</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="sub-title">
-                            <div class="footer-title">
-                                <h4>information</h4>
-                            </div>
-                            <div class="footer-contant">
-                                <ul>
-                                    <li><a href="#">shipping & return</a></li>
-                                    <li><a href="#">secure shopping</a></li>
-                                    <li><a href="#">gallary</a></li>
-                                    <li><a href="#">affiliates</a></li>
-                                    <li><a href="#">contacts</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="sub-title">
-                            <div class="footer-title">
-                                <h4>follow us</h4>
-                            </div>
-                            <div class="footer-contant">
-                                <p class="mb-cls-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt
-                                    ut labore</p>
-                                <form class="form-inline">
-                                    <div class="form-group me-sm-3 mb-2">
-                                        <label for="inputPassword2" class="sr-only">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Enter Your Email">
-                                    </div>
-                                    <button type="submit" class="btn btn-solid mb-2">subscribe</button>
-                                </form>
-                                <div class="footer-social">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="sub-footer dark-subfooter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6 col-sm-12">
-                        <div class="footer-end">
-                            <p><i class="fa fa-copyright" aria-hidden="true"></i> Mialle Ecommerce website</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6 col-sm-12">
-                        <div class="payment-card-bottom">
-                            <ul>
-                                <li>
-                                    <a href="#"><img src="assets/images/icon/visa.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="assets/images/icon/mastercard.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="assets/images/icon/paypal.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="assets/images/icon/american-express.png" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="assets/images/icon/discover.png" alt=""></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer section end -->
+    <?php include 'footer.php'; ?>
 
 
 
