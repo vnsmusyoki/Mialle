@@ -27,20 +27,7 @@
             <li><a href="shop-now.php"><i class="fa fa-circle"></i>All Products</a></li>
         </ul>
     </li>
-    <li><a class="sidebar-header" href=""><i data-feather="chrome"></i><span>Categories</span><i class="fa fa-angle-right pull-right"></i></a>
-        <ul class="sidebar-submenu">
-            <li><a href="add-category.php"><i class="fa fa-circle"></i>Add New</a></li>
-            <li><a href="all-categories.php"><i class="fa fa-circle"></i>Category List</a></li>
-             
-        </ul>
-    </li>
-    <li><a class="sidebar-header" href=""><i data-feather="camera"></i><span>Sub Categories</span><i class="fa fa-angle-right pull-right"></i></a>
-        <ul class="sidebar-submenu">
-            <li><a href="add-sub-category.php"><i class="fa fa-circle"></i>Add New</a></li>
-            <li><a href="all-sub-categories.php"><i class="fa fa-circle"></i>SubCategory List</a></li>
-             
-        </ul>
-    </li>
+    
     <li><a class="sidebar-header" href=""><i data-feather="users"></i><span>Admin</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
             <li><a href="add-admin.php"><i class="fa fa-circle"></i>Add New</a></li>

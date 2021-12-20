@@ -1,10 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['customer'])) {
     header('Location: ../login.php');
 } else {
     include '../db-connection.php';
-    $email_username = $_SESSION['admin'];
+    $email_username = $_SESSION['customer'];
     $checkemail = "SELECT *  FROM `login` WHERE `login_email` = '$email_username' OR `login_username`= '$email_username'";
     $queryemail = mysqli_query($conn, $checkemail);
     $checkemailrows = mysqli_num_rows($queryemail);
