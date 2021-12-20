@@ -28,6 +28,9 @@ if (empty($email_username) || empty($password)) {
                 if ($category == "customer") {
                     $_SESSION['customer'] = $email_username;
                     echo "<script>window.location.replace('customer/dashboard.php');</script>";
+                }else{
+                    $_SESSION['admin'] = $email_username;
+                    echo "<script>window.location.replace('admin/dashboard.php');</script>";
                 }
             }
         }
