@@ -28,7 +28,7 @@ include 'customer.php';
 
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/datatables.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/toastr.min.css">
@@ -75,15 +75,15 @@ include 'customer.php';
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="page-header-left">
-                                    <h3>Product List
-                                        <small>Uploaded Products</small>
+                                    <h3>Admin List
+                                        <small>All Admin Accountd</small>
                                     </h3>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <ol class="breadcrumb pull-right">
                                     <li class="breadcrumb-item"><a href="index.php"><i data-feather="home"></i></a></li>
-                                    <li class="breadcrumb-item">Products</li>
+                                    <li class="breadcrumb-item">Admin</li>
                                     <li class="breadcrumb-item active">My Listings</li>
                                 </ol>
                             </div>
@@ -91,93 +91,65 @@ include 'customer.php';
                     </div>
                 </div>
                 <!-- Container-fluid Ends-->
-                <?php
-                if (isset($_GET['productuploaded'])) {
-                    $msg = $_GET['productuploaded'];
-                    if ($msg == "success") {
-                        $messagenow = "
-                        <script>
-                        toastr.success('Product uploaded successfully.');
-                    </script>";
-                    }
-                    echo $messagenow;
-                }
 
-                ?>
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="row products-admin ratio_asos">
-                        <?php
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Manage Admin</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="basic-1">
+                                        <thead>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email Address</th>
+                                                <th>Username </th>
+                                                <th>Phone Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
 
-                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalloggedinid'";
-                        $queryproducts = mysqli_query($conn, $products);
-                        $queryproductsrows = mysqli_num_rows($queryproducts);
-                        if ($queryproductsrows >= 1) {
-                            while ($fetch = mysqli_fetch_assoc($queryproducts)) {
-                                $name = $fetch['product_name'];
-                                $price = $fetch['product_price'];
-                                $image = $fetch['product_images'];
-                                $productid = $fetch['product_id'];
-                                $categoryid = $fetch['product_category_id'];
-                                $subcategoryid = $fetch['product_sub_category_id'];
-                                $checkcategory = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$subcategoryid'";
-                                $querycategory = mysqli_query($conn, $checkcategory);
-                                while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
-                                    $subcategoryname = $fetchsubcategory['sub_category_name'];
-                                }
-                                $checkcategory = "SELECT * FROM `categories` WHERE `category_id`='$categoryid'";
-                                $querycategory = mysqli_query($conn, $checkcategory);
-                                while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
-                                    $categoryname = $fetchcategory['category_name'];
-                                   
-                                }
-                                echo "
-                                <div class='col-xl-3 col-sm-6'>
-                                <div class='card'>
-                                    <div class='card-body product-box'>
-                                        <div class='img-wrapper'>
-                                            <div class='front'>
-                                                <a href='product-details.php?product=$productid'><img src='../products/$image' class='img-fluid blur-up lazyload bg-img' alt=''></a>
-                                                <div class='product-hover'>
-                                                    <ul>
-                                                        <li>
-                                                            <a href='edit-product.php?product=$productid' class='btn' title='Edit Product'><i class='ti-pencil-alt'></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href='delete-product.php?product=$productid' class='btn'  title='Delete Product'><i class='ti-trash'></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class='product-detail'>
-    
-                                            <a href='product-details.php?product=$productid'>
-                                                <h6>$name</h6>
-                                            </a>
-                                            <h4>Kshs. $price </h4>
-                                             <h6>$categoryname - $subcategoryname</h6>
-                                        </div>
-                                    </div>
+                                            $admins = "SELECT * FROM `admin`";
+                                            $queryadmins = mysqli_query($conn, $admins);
+                                            $queryadminrows = mysqli_num_rows($queryadmins);
+                                            if ($queryadminrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryadmins)) {
+                                                    $firstname = $fetch['admin_first_name'];
+                                                    $lastname = $fetch['admin_last_name'];
+                                                    $mobile = $fetch['admin_mobile'];
+                                                    $email = $fetch['admin_email'];
+                                                    $adminloginid = $fetch['admin_login_id'];
+                                                    $checkcategory = "SELECT * FROM `login` WHERE `login_id`='$adminloginid'";
+                                                    $querycategory = mysqli_query($conn, $checkcategory);
+                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
+                                                        $username = $fetchsubcategory['login_username'];
+                                                    }
+
+                                                    echo "
+                                                    <tr>
+                                                         
+                                                        <td>$firstname</td>
+                                                        <td>$lastname</td>
+                                                        <td>$email</td>
+                                                        <td>$username</td>
+                                                        <td>$mobile</td>
+                                                        
+                                                    </tr>";
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-    
-                                ";
-                            }
-                        } else {
-                            echo "
-                                <div class ='col-lg-12 col-xs-12'>
-                                    <div class='card'>
-                                    <div class='product-detail' style='padding:1rem;'>
-                                        <center><strong>No Products Added.</strong></center>
-                                    </div>
-                                    </div>
-                                </div>
-                                ";
-                        }
-                        ?>
-
+                        </div>
                     </div>
+
                 </div>
                 <!-- Container-fluid Ends-->
 
@@ -201,7 +173,8 @@ include 'customer.php';
 
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
-
+    <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/datatables/custom-basic.js"></script>
 
     <!-- lazyload js-->
     <script src="assets/js/lazysizes.min.js"></script>
