@@ -1,4 +1,4 @@
-<?php include 'customer.php';
+<?php include 'seller.php';
 
 ?>
 <?php $product_name =  $product_price = $product_description = $message = ''; ?>
@@ -63,7 +63,7 @@
                     <div class="sidebar-user text-center">
                         <div><img class="img-60 rounded-circle blur-up lazyloaded" src="assets/images/dashboard/man.png" alt="#">
                         </div>
-                        <h6 class="mt-3 f-14"><?php echo $globalusername; ?></h6>
+                        <h6 class="mt-3 f-14"><?php echo $globalname; ?></h6>
                         <p><?php echo $globalemail; ?></p>
                     </div>
                     <?php include 'sidebar.php'; ?>

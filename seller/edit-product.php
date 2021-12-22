@@ -1,4 +1,4 @@
-<?php include 'customer.php'; ?>
+<?php include 'seller.php'; ?>
 <?php
 $product_name =  $product_price = $product_description = $message = '';
 if (isset($_GET['product'])) {

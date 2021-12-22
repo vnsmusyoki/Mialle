@@ -31,7 +31,6 @@ if (empty($product_name) || empty($product_price) || empty($product_category) ||
                         ";
             echo "<script>window.location.replace('my-products.php');</script>";
         }
-        
     } else {
         $filename = $_FILES['picture']['name'];
         $filetmpname = $_FILES['picture']['tmp_name'];
@@ -65,7 +64,6 @@ if (empty($product_name) || empty($product_price) || empty($product_category) ||
                         echo "<script>window.location.replace('my-products.php');</script>";
                     }
                 }
-                
             } else {
                 $message = "
                         <script>
@@ -73,7 +71,6 @@ if (empty($product_name) || empty($product_price) || empty($product_category) ||
                         </script>
                             ";
             }
-
         } else {
             $message = "
                     <script>

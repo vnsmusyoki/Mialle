@@ -1,7 +1,5 @@
 <?php
-include 'customer.php';
-
-
+include 'seller.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

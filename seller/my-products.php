@@ -1,5 +1,5 @@
 <?php
-include 'customer.php';
+include 'seller.php';
 
 
 ?>
@@ -108,26 +108,29 @@ include 'customer.php';
                 <div class="container-fluid">
                     <div class="row products-admin ratio_asos">
                         <?php
-                        $email_username = $_SESSION['customer'];
-                        $checkemail = "SELECT *  FROM `login` WHERE `login_email` = '$email_username' OR `login_username`= '$email_username'";
+                        $email_username = $_SESSION['seller'];
+                        $checkemail = "SELECT *  FROM `login` WHERE  `login_username`= '$email_username'";
                         $queryemail = mysqli_query($conn, $checkemail);
                         $checkemailrows = mysqli_num_rows($queryemail);
                         if ($checkemailrows >= 1) {
                             while ($fetch = mysqli_fetch_assoc($queryemail)) {
-                                $globalusername = $fetch['login_username'];
-                                $globalemail = $fetch['login_email'];
+                                $globalusername = $fetch['login_username']; 
                                 $globalloggedinid = $fetch['login_id'];
-                                $checkcustomer = "SELECT *  FROM `users` WHERE `user_login_id` = '$globalloggedinid'";
+                                $checkcustomer = "SELECT *  FROM `seller` WHERE `seller_login_id` = '$globalloggedinid'";
                                 $querycustomer = mysqli_query($conn, $checkcustomer);
-
+                                 
                                 while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
-                                    $globalname = $fetchcustomer['user_name'];
-                                    $globalcontact = $fetchcustomer['user_contact'];
-                                    $globallocation = $fetchcustomer['user_location'];
-                                    $globaluserid = $fetchcustomer['user_id'];
+                                    $globalfirstname = $fetchcustomer['seller_first_name'];
+                                    $globallastname = $fetchcustomer['seller_last_name'];
+                                    $globalcontact = $fetchcustomer['seller_mobile'];
+                                    $globalemail = $fetchcustomer['seller_email'];
+                                    $globallocation = $fetchcustomer['seller_location'];
+                                    $globaluserid = $fetchcustomer['seller_login_id'];
+                                    $globalsellerid = $fetchcustomer['seller_id'];
                                 }
-
-
+                    
+                                $globalname = $globalfirstname . " " . $globallastname;
+                                global $globalname;
                                 global $globalusername;
                                 global $globalemail;
                                 global $globalname;
@@ -135,9 +138,10 @@ include 'customer.php';
                                 global $globallocation;
                                 global $globalloggedinid;
                                 global $globaluserid;
+                                global $globalsellerid;
                             }
                         }
-                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globaluserid'";
+                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalsellerid'";
                         $queryproducts = mysqli_query($conn, $products);
                         $queryproductsrows = mysqli_num_rows($queryproducts);
                         if ($queryproductsrows >= 1) {
