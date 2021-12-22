@@ -22,6 +22,7 @@ if (!isset($_SESSION['buyer'])) {
                 $globalemail = $fetchcustomer['buyer_email'];
                 $globallocation = $fetchcustomer['buyer_location'];
                 $globaluserid = $fetchcustomer['buyer_login_id'];
+                $globalbuyerid = $fetchcustomer['buyer_id'];
             }
 
             $globalfullname = $globalfirstname . " " . $globallastname;
@@ -33,6 +34,7 @@ if (!isset($_SESSION['buyer'])) {
             global $globallocation;
             global $globalloggedinid;
             global $globaluserid;
+            global $globalbuyerid;
         }
     }
 }

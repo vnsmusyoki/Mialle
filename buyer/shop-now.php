@@ -90,25 +90,11 @@ include 'buyer.php';
                         </div>
                     </div>
                 </div>
-                <!-- Container-fluid Ends-->
-                <?php
-                if (isset($_GET['productuploaded'])) {
-                    $msg = $_GET['productuploaded'];
-                    if ($msg == "success") {
-                        $messagenow = "
-                        <script>
-                        toastr.success('Product uploaded successfully.');
-                    </script>";
-                    }
-                    echo $messagenow;
-                }
-
-                ?>
-                <!-- Container-fluid starts-->
+           
                 <div class="container-fluid">
                     <div class="row products-admin ratio_asos">
                         <?php
-                        $email_username = $_SESSION['customer'];
+                        $email_username = $_SESSION['buyer'];
                         $checkemail = "SELECT *  FROM `login` WHERE `login_username` = '$email_username' ";
                         $queryemail = mysqli_query($conn, $checkemail);
                         $checkemailrows = mysqli_num_rows($queryemail);

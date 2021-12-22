@@ -1,4 +1,4 @@
-<?php include 'customer.php'; ?>
+<?php include 'buyer.php'; ?>
 <?php
 $product_name =  $product_price = $product_description = $message = '';
 if (isset($_GET['cartitem'])) {
@@ -21,19 +21,29 @@ if (isset($_GET['cartitem'])) {
         global $globalproductid;
         global $globalproductimage;
         global $globalproductuserid;
-        $checkuser = "SELECT * FROM `users` WHERE `user_id` = '$globalproductuserid'";
+        $checkuser = "SELECT * FROM `seller` WHERE `seller_id` = '$globalproductuserid'";
         $querycheckuser = mysqli_query($conn, $checkuser);
         $queryuserrows = mysqli_num_rows($querycheckuser);
-        if($queryuserrows >= 1){
-            while($fetchuser = mysqli_fetch_assoc($querycheckuser)){
-                $globalphone = $fetchuser['user_contact'];
-                $globalusername = $fetchuser['user_name'];
-                $globallocation = $fetchuser['user_location'];
-            }
+
+
+        while ($fetchcustomer = mysqli_fetch_assoc($querycheckuser)) {
+            $globalfirstname = $fetchcustomer['seller_first_name'];
+            $globallastname = $fetchcustomer['seller_last_name'];
+            $globalcontact = $fetchcustomer['seller_mobile'];
+            $globalemail = $fetchcustomer['seller_email'];
+            $globallocation = $fetchcustomer['seller_location'];
+            $globaluserid = $fetchcustomer['seller_login_id'];
         }
+
+        $globalname = $globalfirstname . " " . $globallastname;
+        global $globalname;
         global $globalusername;
-        global $globalphone;
+        global $globalemail;
+        global $globalname;
+        global $globalcontact;
         global $globallocation;
+        global $globalloggedinid;
+        global $globaluserid;
     }
 } else {
     echo "<script>window.location.replace('my-products.php');</script>";
@@ -100,7 +110,7 @@ if (isset($_GET['cartitem'])) {
                     <div class="sidebar-user text-center">
                         <div><img class="img-60 rounded-circle blur-up lazyloaded" src="assets/images/dashboard/man.png" alt="#">
                         </div>
-                        <h6 class="mt-3 f-14"><?php echo $globalusername; ?></h6>
+                        <h6 class="mt-3 f-14"><?php echo $globalname; ?></h6>
                         <p><?php echo $globalemail; ?></p>
                     </div>
                     <?php include 'sidebar.php'; ?>
@@ -119,7 +129,7 @@ if (isset($_GET['cartitem'])) {
                             <div class="col-lg-6">
                                 <div class="page-header-left">
                                     <h3>Product List
-                                        <small>Contact  Product Seller</small>
+                                        <small>Contact Product Seller</small>
                                     </h3>
                                 </div>
                             </div>
@@ -168,7 +178,7 @@ if (isset($_GET['cartitem'])) {
                                             <tr>
                                                 <td>1</td>
                                                 <td>Full Names</td>
-                                                <td><?php echo $globalusername; ?></td>
+                                                <td><?php echo $globalname; ?></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
@@ -178,24 +188,16 @@ if (isset($_GET['cartitem'])) {
                                             <tr>
                                                 <td>3</td>
                                                 <td>Phone Number</td>
-                                                <td><?php echo $globalphone; ?></td>
+                                                <td><?php echo $globalcontact; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Email Address</td>
+                                                <td><?php echo $globalemail; ?></td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <?php
-
-
-                                    if ($globalloggedinid == $globalproductuserid) {
-                                        echo "
-                                        <div class='m-t-15'>
-                                        <a href='shopping-cart.php' class='btn btn-primary m-r-10' type='button'>Return Back</a>
-                                      
-                                    </div>
-                                        ";
-                                    }
-
-
-                                    ?>
+                                  
 
                                 </div>
                             </div>

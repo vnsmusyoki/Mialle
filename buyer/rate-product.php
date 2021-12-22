@@ -1,4 +1,4 @@
-<?php include 'customer.php'; ?>
+<?php include 'buyer.php'; ?>
 <?php
 $product_name =  $product_price = $product_description = $message = '';
 if (isset($_GET['cartitem'])) {
@@ -21,19 +21,27 @@ if (isset($_GET['cartitem'])) {
         global $globalproductid;
         global $globalproductimage;
         global $globalproductuserid;
-        $checkuser = "SELECT * FROM `users` WHERE `user_id` = '$globalproductuserid'";
+        $checkuser = "SELECT * FROM `seller` WHERE `seller_id` = '$globalproductuserid'";
         $querycheckuser = mysqli_query($conn, $checkuser);
         $queryuserrows = mysqli_num_rows($querycheckuser);
-        if ($queryuserrows >= 1) {
-            while ($fetchuser = mysqli_fetch_assoc($querycheckuser)) {
-                $globalphone = $fetchuser['user_contact'];
-                $globalusername = $fetchuser['user_name'];
-                $globallocation = $fetchuser['user_location'];
-            }
+        while ($fetchcustomer = mysqli_fetch_assoc($querycheckuser)) {
+            $globalfirstname = $fetchcustomer['seller_first_name'];
+            $globallastname = $fetchcustomer['seller_last_name'];
+            $globalcontact = $fetchcustomer['seller_mobile'];
+            $globalemail = $fetchcustomer['seller_email'];
+            $globallocation = $fetchcustomer['seller_location'];
+            $globaluserid = $fetchcustomer['seller_login_id'];
         }
+
+        $globalname = $globalfirstname . " " . $globallastname;
+        global $globalname;
         global $globalusername;
-        global $globalphone;
+        global $globalemail;
+        global $globalname;
+        global $globalcontact;
         global $globallocation;
+        global $globalloggedinid;
+        global $globaluserid;
     }
 } else {
     echo "<script>window.location.replace('my-products.php');</script>";
@@ -178,24 +186,16 @@ if (isset($_GET['cartitem'])) {
                                             <tr>
                                                 <td>3</td>
                                                 <td>Phone Number</td>
-                                                <td><?php echo $globalphone; ?></td>
+                                                <td><?php echo $globalcontact; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Email Address</td>
+                                                <td><?php echo $globalemail; ?></td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <?php
 
-
-                                    if ($globalloggedinid == $globalproductuserid) {
-                                        echo "
-                                        <div class='m-t-15'>
-                                        <a href='shopping-cart.php' class='btn btn-primary m-r-10' type='button'>Return Back</a>
-                                      
-                                    </div>
-                                        ";
-                                    }
-
-
-                                    ?>
                                     <div class="card">
                                         <div class="card-body product-box">
                                             <form action="" enctype="multipart/form-data" method="POST" action="">
@@ -213,7 +213,7 @@ if (isset($_GET['cartitem'])) {
                                                     } else {
                                                         $ordercid = $_GET['orderid'];
                                                         $productid = $_GET['cartitem'];
-                                                        $checkcategory = "SELECT *  FROM `feedback` WHERE `feedback_user_id` = '$globalloggedinid' AND `feedback_order_id`='$ordercid'";
+                                                        $checkcategory = "SELECT *  FROM `feedback` WHERE `feedback_user_id` = '$globalbuyerid' AND `feedback_order_id`='$ordercid'";
                                                         $quercategory = mysqli_query($conn, $checkcategory);
                                                         $checkcategoryrows = mysqli_num_rows($quercategory);
                                                         if ($checkcategoryrows >= 1) {
@@ -222,7 +222,7 @@ if (isset($_GET['cartitem'])) {
                                                         toastr.error('You have already rated this product.');
                                                     </script>";
                                                         } else {
-                                                          $addcat = "INSERT INTO `feedback`(`feedback_user_id`, `feedback_comment`, `feedback_rating`, `feedback_order_id`) VALUES ('$globalloggedinid', '$description','$rating','$ordercid')";
+                                                            $addcat = "INSERT INTO `feedback`(`feedback_user_id`, `feedback_comment`, `feedback_rating`, `feedback_order_id`) VALUES ('$globalbuyerid', '$description','$rating','$ordercid')";
                                                             $querycat = mysqli_query($conn, $addcat);
                                                             if ($querycat) {
                                                                 echo "<script>window.location.replace('shopping-cart.php');</script>";

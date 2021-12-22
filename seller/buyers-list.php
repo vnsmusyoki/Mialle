@@ -1,4 +1,4 @@
-<?php include 'customer.php'; ?>
+<?php include 'seller.php'; ?>
 <?php 
 if (isset($_GET['product'])) {
     $productid = $_GET['product'];
@@ -181,12 +181,12 @@ if (isset($_GET['product'])) {
                                                     $querycategory = mysqli_query($conn, $checkcategory);
                                                     while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
                                                         $buyerid = $fetchsubcategory['order_buyer_user_id'];
-                                                        $checkproduct = "SELECT * FROM `users` WHERE `user_login_id`='$buyerid'";
+                                                        $checkproduct = "SELECT * FROM `buyer` WHERE `buyer_id`='$buyerid'";
                                                         $queryproduct = mysqli_query($conn, $checkproduct);
                                                         while ($fetchcategory = mysqli_fetch_assoc($queryproduct)) {
-                                                            $name = $fetchcategory['user_name'];
-                                                            $location = $fetchcategory['user_location'];
-                                                            $contact = $fetchcategory['user_contact']; 
+                                                            $name = $fetchcategory['buyer_first_name']. " ".$fetchcategory['buyer_last_name'];
+                                                            $location = $fetchcategory['buyer_location'];
+                                                            $contact = $fetchcategory['buyer_mobile']; 
                                                             echo "
                                                     <tr>
                                                         

@@ -1,4 +1,4 @@
-<?php include 'customer.php'; ?>
+<?php include 'buyer.php'; ?>
 <?php
 if (isset($_GET['cartitem'])) {
     $cartitemid = $_GET['cartitem'];

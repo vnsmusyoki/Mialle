@@ -115,7 +115,7 @@ include 'buyer.php';
                                         <tbody>
                                             <?php
 
-                                            $products = "SELECT * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_details_order_id WHERE orders.order_buyer_user_id='$globalloggedinid' ";
+                                            $products = "SELECT * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_details_order_id WHERE orders.order_buyer_user_id='$globalbuyerid' ";
                                             $queryproducts = mysqli_query($conn, $products);
                                             $queryproductsrows = mysqli_num_rows($queryproducts);
                                             if ($queryproductsrows >= 1) {
