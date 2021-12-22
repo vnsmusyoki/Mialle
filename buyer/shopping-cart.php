@@ -1,5 +1,5 @@
 <?php
-include 'customer.php';
+include 'buyer.php';
 
 
 ?>
@@ -14,7 +14,7 @@ include 'customer.php';
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - My Products</title>
+    <title>Mialle - My Shopping Cart</title>
 
 
     <!-- Font Awesome-->
@@ -57,7 +57,7 @@ include 'customer.php';
                     <div class="sidebar-user text-center">
                         <div><img class="img-60 rounded-circle blur-up lazyloaded" src="assets/images/dashboard/man.png" alt="#">
                         </div>
-                        <h6 class="mt-3 f-14"><?php echo $globalname; ?></h6>
+                        <h6 class="mt-3 f-14"><?php echo $globalfullname; ?></h6>
                         <p><?php echo $globalemail; ?></p>
                     </div>
                     <?php include 'sidebar.php'; ?>
@@ -75,36 +75,22 @@ include 'customer.php';
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="page-header-left">
-                                    <h3>Product List
-                                        <small>Uploaded Products</small>
+                                    <h3>Shopping List
+                                        <small>Selected Products</small>
                                     </h3>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <ol class="breadcrumb pull-right">
                                     <li class="breadcrumb-item"><a href="index.php"><i data-feather="home"></i></a></li>
-                                    <li class="breadcrumb-item">Products</li>
+                                    <li class="breadcrumb-item">Shopping Cart Items</li>
                                     <li class="breadcrumb-item active">My Listings</li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Container-fluid Ends-->
-                <?php
-                if (isset($_GET['productuploaded'])) {
-                    $msg = $_GET['productuploaded'];
-                    if ($msg == "success") {
-                        $messagenow = "
-                        <script>
-                        toastr.success('Product uploaded successfully.');
-                    </script>";
-                    }
-                    echo $messagenow;
-                }
-
-                ?>
-                <!-- Container-fluid starts-->
+          
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-12">

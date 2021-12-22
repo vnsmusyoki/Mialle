@@ -11,7 +11,7 @@ if (empty($email_username) || empty($password)) {
         </script>
     ";
 } else {
-    $checkemail = "SELECT *  FROM `login` WHERE `login_email` = '$email_username' OR `login_username`= '$email_username'";
+    $checkemail = "SELECT *  FROM `login` WHERE `login_username` = '$email_username' ";
     $queryemail = mysqli_query($conn, $checkemail);
     $checkemailrows = mysqli_num_rows($queryemail);
     if ($checkemailrows >= 1) {
@@ -26,7 +26,7 @@ if (empty($email_username) || empty($password)) {
             </script>";
             } else {
                 if ($category == "buyer") {
-                    $_SESSION['seller'] = $email_username;
+                    $_SESSION['buyer'] = $email_username;
                     echo "<script>window.location.replace('buyer/dashboard.php');</script>";
                 }else if($category == "seller"){
                     $_SESSION['seller'] = $email_username;

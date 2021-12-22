@@ -1,7 +1,5 @@
 <?php
-include 'customer.php';
-
-
+include 'buyer.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +12,7 @@ include 'customer.php';
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - My Products</title>
+    <title>Mialle - Buyer Dashboard</title>
 
 
     <!-- Font Awesome-->
@@ -57,7 +55,7 @@ include 'customer.php';
                     <div class="sidebar-user text-center">
                         <div><img class="img-60 rounded-circle blur-up lazyloaded" src="assets/images/dashboard/man.png" alt="#">
                         </div>
-                        <h6 class="mt-3 f-14"><?php echo $globalname; ?></h6>
+                        <h6 class="mt-3 f-14"><?php echo $globalfullname; ?></h6>
                         <p><?php echo $globalemail; ?></p>
                     </div>
                     <?php include 'sidebar.php'; ?>
