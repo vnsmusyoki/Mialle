@@ -151,11 +151,11 @@ if (isset($_GET['product'])) {
                                     $checkemailrows = mysqli_num_rows($queryemail);
                                     if ($checkemailrows >= 1) {
                                         while ($fetch = mysqli_fetch_assoc($queryemail)) {
-                                            $globalusername = $fetch['login_username']; 
+                                            $globalusername = $fetch['login_username'];
                                             $globalloggedinid = $fetch['login_id'];
                                             $checkcustomer = "SELECT *  FROM `seller` WHERE `seller_login_id` = '$globalloggedinid'";
                                             $querycustomer = mysqli_query($conn, $checkcustomer);
-                                             
+
                                             while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
                                                 $globalfirstname = $fetchcustomer['seller_first_name'];
                                                 $globallastname = $fetchcustomer['seller_last_name'];
@@ -165,7 +165,7 @@ if (isset($_GET['product'])) {
                                                 $globaluserid = $fetchcustomer['seller_login_id'];
                                                 $globalsellerid = $fetchcustomer['seller_id'];
                                             }
-                                
+
                                             $globalname = $globalfirstname . " " . $globallastname;
                                             global $globalname;
                                             global $globalusername;
@@ -178,7 +178,7 @@ if (isset($_GET['product'])) {
                                             global $globalsellerid;
                                         }
                                     }
-                                 
+
                                     if ($globalsellerid !== $globalproductuserid) {
                                         echo "
                                         <div class='m-t-15'>
@@ -202,12 +202,15 @@ if (isset($_GET['product'])) {
                                     <h5>Product Feedbacks</h5>
                                 </div>
                                 <div class="card-body order-datatable">
-                                    <table class="display" id="basic-1">
+                                    <table class="display" id="example">
                                         <thead>
                                             <tr>
+                                                <th>Customer Name</th>
+                                                <th>Customer Email</th>
+                                                <th>Product Name</th>
                                                 <th>Feed back</th>
                                                 <th>Rating</th>
-                                                    
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -219,24 +222,32 @@ if (isset($_GET['product'])) {
                                             if ($queryproductsrows >= 1) {
                                                 while ($fetch = mysqli_fetch_assoc($queryproducts)) {
                                                     $orderid = $fetch['order_details_order_id'];
-
                                                     $comments = "SELECT * FROM `feedback` WHERE feedback_order_id='$orderid'";
                                                     $querycomments = mysqli_query($conn, $comments);
                                                     $queryproductsrows = mysqli_num_rows($querycomments);
-                                                    if($fetchc = mysqli_fetch_assoc($querycomments)){
+                                                    if ($fetchc = mysqli_fetch_assoc($querycomments)) {
                                                         $message = $fetchc['feedback_comment'];
                                                         $rating = $fetchc['feedback_rating'];
-                                                         echo "
-                                                    <tr>
-                                                  
-                                                        <td>$rating</td>
-                                                        <td>$message</td> 
-                                                        
+                                                        $buyeridcheck = $fetchc['feedback_user_id'];
+                                                        $buyer = "SELECT * FROM `buyer` WHERE `buyer_id`='$buyeridcheck'";
+                                                        $querybuyer = mysqli_query($conn, $buyer);
+                                                        while ($fetchbuyer = mysqli_fetch_assoc($querybuyer)) {
+                                                            $bname = $fetchbuyer['buyer_first_name'] . " " . $fetchbuyer['buyer_last_name'];
+                                                            $bemail = $fetchbuyer['buyer_email'];
 
-                                                    </tr>";
+                                                            echo "
+                                                            <tr>
+                                                          
+                                                                <td>$bname</td>
+                                                                <td>$bemail</td>
+                                                                <td>$globalproductname</td>
+                                                                <td>$rating</td>
+                                                                <td>$message</td> 
+                                                                
+        
+                                                            </tr>";
+                                                        }
                                                     }
-
-                                                   
                                                 }
                                             }
                                             ?>
@@ -267,6 +278,8 @@ if (isset($_GET['product'])) {
     <script src="assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
     <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.buttons.min.js"></script>
+    <script src="assets/js/buttons.print.min.js"></script>
     <script src="assets/js/datatables/custom-basic.js"></script>
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
@@ -282,7 +295,22 @@ if (isset($_GET['product'])) {
 
     <!--script admin-->
     <script src="assets/js/admin-script.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+            $('#exampletwo').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -80,7 +80,7 @@ if (empty($first_name) || empty($last_name) || empty($mobile_number) || empty($e
             </script>";
             } else {
                 $password = md5($password);
-                $adduser = "INSERT INTO `login`(`login_username`, `login_password`, `login_email`, `login_rank`) VALUES ('$username', '$password', '$email_address', 'admin')";
+                $adduser = "INSERT INTO `login`(`login_username`, `login_password`, `login_rank`) VALUES ('$username', '$password', 'admin')";
                 $queryuser = mysqli_query($conn, $adduser);
                 $last_id = mysqli_insert_id($conn);
                 if ($queryuser) {

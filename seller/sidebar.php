@@ -20,13 +20,13 @@
         </ul>
     </li>
     <li><a class="sidebar-header" href="pick-points.php"><i data-feather="dollar-sign"></i><span>My Pick Points</span><i class="fa fa-angle-right pull-right"></i></a> </li>
-    <li><a class="sidebar-header" href="shopping-cart.php"><i data-feather="camera"></i><span>Shopping Cart</span></a></li>
-    <li><a class="sidebar-header" href="#"><i data-feather="align-left"></i><span>Pick up Point</span><i class="fa fa-angle-right pull-right"></i></a>
+    <!-- <li><a class="sidebar-header" href="shopping-cart.php"><i data-feather="camera"></i><span>Shopping Cart</span></a></li> -->
+    <!-- <li><a class="sidebar-header" href="#"><i data-feather="align-left"></i><span>Pick up Point</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
             <li><a href="pick-points.php"><i class="fa fa-circle"></i>Upload Station</a></li>
             <li><a href="my-checkpoint.php"><i class="fa fa-circle"></i>My Station</a></li>
         </ul>
-    </li>
+    </li> -->
     <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Shop Now</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
             <li><a href="shop-now.php"><i class="fa fa-circle"></i>All Products</a></li>
