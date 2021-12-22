@@ -154,10 +154,10 @@
                                        <a href="all-products.php">All Products</a>
                                    </li>
                                    <li>
-                                       <a href="register.php">Start Selling</a>
+                                       <a href="seller-register.php">Seller </a>
                                    </li>
 
-                                   <li><a href="login.php">My Account</a> </li>
+                                   <li><a href="buyer-register.php">Buyer </a> </li>
 
                                </ul>
                            </nav>

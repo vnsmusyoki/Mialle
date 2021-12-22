@@ -1,6 +1,7 @@
 <?php
 include 'db-connection.php';
-$full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+$first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
+$last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
 $location = mysqli_real_escape_string($conn, $_POST['location']);
 $phone_number = mysqli_real_escape_string($conn, $_POST['phone_number']);
 $email_address = mysqli_real_escape_string($conn, $_POST['email_address']);
@@ -11,13 +12,13 @@ $passwordlength = strlen($password);
 $usernamelength = strlen($username);
 $phonelength = strlen($phone_number);
 
-if (empty($full_name) || empty($location) || empty($phone_number) || empty($email_address) || empty($username) || empty($password) || empty($confirm_password)) {
+if (empty($first_name) || empty($last_name) || empty($location) || empty($phone_number) || empty($email_address) || empty($username) || empty($password) || empty($confirm_password)) {
     $message = "
         <script>
             toastr.error('Please Provide all the details');
         </script>
     ";
-} else if (!preg_match("/^[a-zA-z ]*$/", $full_name)) {
+} else if (!preg_match("/^[a-zA-z ]*$/", $first_name)|| !preg_match("/^[a-zA-z ]*$/", $last_name)) {
     $message = "
         <script>
             toastr.error('Provided an invalid name');
@@ -47,7 +48,7 @@ if (empty($full_name) || empty($location) || empty($phone_number) || empty($emai
         toastr.error('Phone number must have 10 digits.');
     </script>
 ";
-} else if ($phonelength < 8) {
+} else if ($usernamelength < 8) {
     $message = "
     <script>
         toastr.error('Username field require at least 8 characters.');
@@ -59,7 +60,7 @@ if (empty($full_name) || empty($location) || empty($phone_number) || empty($emai
     </script>
 ";
 } else {
-    $checkphone = "SELECT *  FROM `users` WHERE `user_contact` = '$phone_number'";
+    $checkphone = "SELECT *  FROM `buyer` WHERE `buyer_mobile` = '$phone_number'";
     $queryphone = mysqli_query($conn, $checkphone);
     $checkphonerows = mysqli_num_rows($queryphone);
     if ($checkphonerows >= 1) {
@@ -87,11 +88,11 @@ if (empty($full_name) || empty($location) || empty($phone_number) || empty($emai
             </script>";
             } else {
                 $password = md5($password);
-                $adduser = "INSERT INTO `login`(`login_username`, `login_password`, `login_email`, `login_rank`) VALUES ('$username', '$password', '$email_address', 'customer')";
+                $adduser = "INSERT INTO `login`(`login_username`, `login_password`, `login_rank`) VALUES ('$username', '$password','seller')";
                 $queryuser = mysqli_query($conn, $adduser);
                 $last_id = mysqli_insert_id($conn);
                 if ($queryuser) {
-                    $addcustomer = "INSERT INTO `users`(`user_name`, `user_contact`, `user_location`, `user_login_id`) VALUES ('$full_name', '$phone_number','$location','$last_id')";
+                    $addcustomer = "INSERT INTO `buyer`(`buyer_first_name`, `buyer_last_name`, `buyer_mobile`, `buyer_email`, `buyer_location`, `buyer_login_id`) VALUES ('$first_name', '$last_name', '$phone_number','$email_address','$location','$last_id')";
                     $querycustomer = mysqli_query($conn, $addcustomer);
                     if ($querycustomer) {
                         $message = "
