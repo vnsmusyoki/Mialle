@@ -158,6 +158,7 @@
                                    </li>
 
                                    <li><a href="buyer-register.php">Buyer </a> </li>
+                                   <li><a href="login.php">My Account </a> </li>
 
                                </ul>
                            </nav>

@@ -60,7 +60,7 @@ if (empty($first_name) || empty($last_name) || empty($location) || empty($phone_
     </script>
 ";
 } else {
-    $checkphone = "SELECT *  FROM `buyer` WHERE `buyer_mobile` = '$phone_number'";
+    $checkphone = "SELECT *  FROM `seller` WHERE `seller_mobile` = '$phone_number'";
     $queryphone = mysqli_query($conn, $checkphone);
     $checkphonerows = mysqli_num_rows($queryphone);
     if ($checkphonerows >= 1) {
@@ -69,7 +69,7 @@ if (empty($first_name) || empty($last_name) || empty($location) || empty($phone_
             toastr.error('Phone Number already exists. Please confirm your number again or proceed to login if you already have an account.');
         </script>";
     } else {
-        $checkemail = "SELECT *  FROM `login` WHERE `login_email` = '$email_address'";
+      echo  $checkemail = "SELECT *  FROM `seller` WHERE `seller_email` = '$email_address'";
         $queryemail = mysqli_query($conn, $checkemail);
         $checkemailrows = mysqli_num_rows($queryemail);
         if ($checkemailrows >= 1) {
@@ -92,7 +92,7 @@ if (empty($first_name) || empty($last_name) || empty($location) || empty($phone_
                 $queryuser = mysqli_query($conn, $adduser);
                 $last_id = mysqli_insert_id($conn);
                 if ($queryuser) {
-                    $addcustomer = "INSERT INTO `buyer`(`buyer_first_name`, `buyer_last_name`, `buyer_mobile`, `buyer_email`, `buyer_location`, `buyer_login_id`) VALUES ('$first_name', '$last_name', '$phone_number','$email_address','$location','$last_id')";
+                    $addcustomer = "INSERT INTO `seller`(`seller_first_name`, `seller_last_name`, `seller_mobile`, `seller_email`, `seller_location`, `seller_login_id`) VALUES ('$first_name', '$last_name', '$phone_number','$email_address','$location','$last_id')";
                     $querycustomer = mysqli_query($conn, $addcustomer);
                     if ($querycustomer) {
                         $message = "

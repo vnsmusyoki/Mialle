@@ -69,7 +69,7 @@ if (empty($first_name) || empty($last_name) || empty($location) || empty($phone_
             toastr.error('Phone Number already exists. Please confirm your number again or proceed to login if you already have an account.');
         </script>";
     } else {
-        $checkemail = "SELECT *  FROM `login` WHERE `login_email` = '$email_address'";
+        $checkemail = "SELECT *  FROM `buyer` WHERE `buyer_email` = '$email_address'";
         $queryemail = mysqli_query($conn, $checkemail);
         $checkemailrows = mysqli_num_rows($queryemail);
         if ($checkemailrows >= 1) {

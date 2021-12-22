@@ -82,7 +82,7 @@
                                      
                                         <li>
                                             <a href="login.php">My Account</a> </li>
-                                        <li><a href="register.php">Start Selling</a> </li>
+                                        <li><a href="seller-register.php">Start Selling</a> </li>
                                          
                                     </ul>
                                 </nav>

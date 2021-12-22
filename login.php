@@ -62,7 +62,7 @@ if (isset($_GET['accountcreated'])) {
             <div class="row">
                 <div class="col-sm-6">
                     <div class="page-title">
-                        <h2>customer's login</h2>
+                        <h2>Account login</h2>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -108,11 +108,13 @@ if (isset($_GET['accountcreated'])) {
                     </div>
                 </div>
                 <div class="col-lg-6 right-login">
-                    <h3>New Customer</h3>
+                    <h3>New Buyer/Seller</h3>
                     <div class="theme-card authentication-right">
                         <h6 class="title-font">Create A Account</h6>
                         <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be
-                            able to order from our shop. To start shopping click register.</p><a href="register.php" class="btn btn-solid">Create an Account</a>
+                            able to order from our shop. To start shopping click register.</p>
+                            <a href="buyer-register.php" class="btn btn-solid">Create Buyer Account</a>
+                            <a href="seller-register.php" class="btn btn-solid">Create Seller Account</a>
                     </div>
                 </div>
             </div>

@@ -25,9 +25,12 @@ if (empty($email_username) || empty($password)) {
                 toastr.error('Incorrect password.');
             </script>";
             } else {
-                if ($category == "customer") {
-                    $_SESSION['customer'] = $email_username;
-                    echo "<script>window.location.replace('customer/dashboard.php');</script>";
+                if ($category == "buyer") {
+                    $_SESSION['seller'] = $email_username;
+                    echo "<script>window.location.replace('buyer/dashboard.php');</script>";
+                }else if($category == "seller"){
+                    $_SESSION['seller'] = $email_username;
+                    echo "<script>window.location.replace('seller/dashboard.php');</script>";
                 }else{
                     $_SESSION['admin'] = $email_username;
                     echo "<script>window.location.replace('admin/dashboard.php');</script>";
