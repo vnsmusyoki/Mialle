@@ -1,4 +1,4 @@
-<?php include 'customer.php'; ?>
+<?php include 'seller.php'; ?>
 <?php $category_name  = $category_description = $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">

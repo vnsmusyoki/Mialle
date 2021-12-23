@@ -1,5 +1,8 @@
-<?php include 'seller.php'; ?>
-<?php $product_name =  $product_price = $product_description = $message = ''; ?>
+<?php
+include 'seller.php';
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +14,8 @@
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - Upload New Pick Point Stations</title>
+    <title>Mialle - My Products</title>
+
 
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
@@ -25,6 +29,7 @@
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
 
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/datatables.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/toastr.min.css">
@@ -32,14 +37,6 @@
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="../assets/js/toastr.min.js"></script>
     <script src="../assets/js/toastr-options.js"></script>
-    <script src="assets/js/images-view.js"></script>
-    <style>
-        .imgGallery img {
-            padding: 8px;
-            width: 100px;
-            height: 100px;
-        }
-    </style>
 </head>
 
 <body>
@@ -79,8 +76,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="page-header-left">
-                                    <h3>Pick Up Point
-                                        <small>Upload New Station</small>
+                                    <h3>Product List
+                                        <small>Uploaded Products</small>
                                     </h3>
                                 </div>
                             </div>
@@ -88,80 +85,137 @@
                                 <ol class="breadcrumb pull-right">
                                     <li class="breadcrumb-item"><a href="index.php"><i data-feather="home"></i></a></li>
                                     <li class="breadcrumb-item">Products</li>
-                                    <li class="breadcrumb-item active">Upload New Station</li>
+                                    <li class="breadcrumb-item active">My Listings</li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Container-fluid Ends-->
+                <?php
+                if (isset($_GET['productuploaded'])) {
+                    $msg = $_GET['productuploaded'];
+                    if ($msg == "success") {
+                        $messagenow = "
+                        <script>
+                        toastr.success('Product uploaded successfully.');
+                    </script>";
+                    }
+                    echo $messagenow;
+                }
 
+                ?>
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="row products-admin ratio_asos">
-                        <div class="col-xl-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-body product-box">
-                                    <form action="" enctype="multipart/form-data" method="POST" action="">
-                                        <?php
-                                        if (isset($_POST["uploadproduct"])) {
-                                            include '../db-connection.php';
 
-                                            $shopname = mysqli_real_escape_string($conn, $_POST['shop_name']);
-                                            $location = mysqli_real_escape_string($conn, $_POST['location']);
-                                            if (empty($shopname) || empty($location)) {
-                                                echo $message = "
-                                                <script>
-                                                    toastr.error('Please Provide all the details');
-                                                </script>
-                                            ";
-                                            } else if (!preg_match("/^[a-zA-z0-9 ]*$/", $shopname)) {
-                                                $message = "
-                                                    <script>
-                                                        toastr.error('Provided an invalid shop name');
-                                                    </script>
-                                                ";
-                                            } else {
-                                                $checklocations = "SELECT * FROM `pickup_points` WHERE `pickup_point_user_id`='$globalloggedinid'";
-                                                $querylocations = mysqli_query($conn, $checklocations);
-                                                if ($querylocationrows >= 1) {
-                                                    $message = "
-                                                    <script>
-                                                        toastr.error('You have already uploaded your pickup station');
-                                                    </script>
-                                                ";
-                                                } else {
-                                                    $addpoint = "INSERT INTO `pickup_points`(`pickup_point_location`, `pickup_point_shop_name`, `pickup_point_user_id`) VALUES ('$location', '$shopname', '$globalloggedinid')";
-                                                    $queryaddpoint = mysqli_query($conn, $addpoint);
-                                                    if ($queryaddpoint) {
-                                                        echo "<script>window.location.replace('my-checkpoint.php');</script>"; 
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Sold Products Pick Up Points</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="example">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th>Name</th>
+                                                <th>Deliver shop</th>
+                                                <th>Location</th>
+                                                <th>Buyer</th>
+                                                <th>Email Address</th>
+                                                <th>Phone Number</th>
+                                                
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $email_username = $_SESSION['seller'];
+                                            $checkemail = "SELECT *  FROM `login` WHERE  `login_username`= '$email_username'";
+                                            $queryemail = mysqli_query($conn, $checkemail);
+                                            $checkemailrows = mysqli_num_rows($queryemail);
+                                            if ($checkemailrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryemail)) {
+                                                    $globalusername = $fetch['login_username'];
+                                                    $globalloggedinid = $fetch['login_id'];
+                                                    $checkcustomer = "SELECT *  FROM `seller` WHERE `seller_login_id` = '$globalloggedinid'";
+                                                    $querycustomer = mysqli_query($conn, $checkcustomer);
+
+                                                    while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
+                                                        $globalfirstname = $fetchcustomer['seller_first_name'];
+                                                        $globallastname = $fetchcustomer['seller_last_name'];
+                                                        $globalcontact = $fetchcustomer['seller_mobile'];
+                                                        $globalemail = $fetchcustomer['seller_email'];
+                                                        $globallocation = $fetchcustomer['seller_location'];
+                                                        $globaluserid = $fetchcustomer['seller_login_id'];
+                                                        $globalsellerid = $fetchcustomer['seller_id'];
+                                                    }
+
+                                                    $globalname = $globalfirstname . " " . $globallastname;
+                                                    global $globalname;
+                                                    global $globalusername;
+                                                    global $globalemail;
+                                                    global $globalname;
+                                                    global $globalcontact;
+                                                    global $globallocation;
+                                                    global $globalloggedinid;
+                                                    global $globaluserid;
+                                                    global $globalsellerid;
+                                                }
+                                            }
+                                            $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalsellerid' AND `product_status`='sold'";
+                                            $queryproducts = mysqli_query($conn, $products);
+                                            $queryproductsrows = mysqli_num_rows($queryproducts);
+                                            if ($queryproductsrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryproducts)) {
+                                                    $name = $fetch['product_name'];
+                                                    $price = $fetch['product_price'];
+                                                    $image = $fetch['product_images'];
+                                                    $productid = $fetch['product_id'];
+                                                    $categoryid = $fetch['product_category_id'];
+                                                    $subcategoryid = $fetch['product_sub_category_id'];
+                                                    $checkcategory = "SELECT * FROM `order_details` WHERE `order_details_product_id`='$productid'";
+                                                    $querycategory = mysqli_query($conn, $checkcategory);
+                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
+                                                        $orderdetailsid = $fetchsubcategory['order_details_id'];
+                                                        $orderdetailsorderid = $fetchsubcategory['order_details_order_id'];
+                                                        $checkcategory = "SELECT * FROM `pickup_points` WHERE `pickup_point_order_id`='$orderdetailsid'";
+                                                        $querycategory = mysqli_query($conn, $checkcategory);
+                                                        while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
+                                                            $pickpointshop = $fetchcategory['pickup_point_shop_name'];
+                                                            $pickpointlocation = $fetchcategory['pickup_point_location'];
+                                                        }
+                                                        $checkorder = "SELECT * FROM `orders` WHERE `order_id`='$orderdetailsorderid'";
+                                                        $queryorder = mysqli_query($conn, $checkorder);
+                                                        while ($fetchcategory = mysqli_fetch_assoc($queryorder)) {
+                                                            $orderbuyer = $fetchcategory['order_buyer_user_id'];
+
+                                                            $checkorder = "SELECT * FROM `buyer` WHERE `buyer_id`='$orderbuyer'";
+                                                            $queryorder = mysqli_query($conn, $checkorder);
+                                                            while ($fetchbuyer = mysqli_fetch_assoc($queryorder)) {
+                                                                $orderbuyernames = $fetchbuyer['buyer_first_name'] . " " . $fetchbuyer['buyer_last_name'];
+                                                                $orderbuyeremail = $fetchbuyer['buyer_email'];
+                                                                $orderbuyermobile = $fetchbuyer['buyer_mobile'];
+                                                                echo "
+                                                                    <td><img src='../products/$image' style='height:100px;'></td>
+                                                                    <td>Kshs. $price</td>
+                                                                    <td>$name</td>
+                                                                    <td>$pickpointshop</td>
+                                                                    <td>$pickpointlocation</td>
+                                                                    <td>$orderbuyernames</td>
+                                                                    <td>$orderbuyeremail</td>
+                                                                    <td>$orderbuyermobile</td>
+                                                                ";
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
-                                        }
-                                        ?>
-                                        <?php echo $message ?>
-                                        <div class="form-row row">
-                                            <div class="col-md-6 mb-4">
-                                                <label for="name">Shop Name</label>
-                                                <input type="text" class="form-control" id="fname" placeholder="Write Shop Name here" name="shop_name" style="text-transform:capitalize;">
-                                            </div>
-                                            <br>
-                                            <div class="col-md-6 mb-4">
-                                                <label for="review">Location</label>
-                                                <select name="location" id="" class="form-control">
-                                                    <option value="">select Location</option>
-                                                    <option value="Kisumu">Kisumu</option>
-                                                    <option value="Nairobi">Nairobi</option>
-                                                    <option value="Mombasa">Mombasa</option>
-                                                </select>
-                                            </div>
-                                            <br>
-                                        </div>
-
-                                        <br>
-                                        <button type="submit" class="btn btn-solid w-auto" name="uploadproduct">Upload Pickup Point</button>
-                                    </form>
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -186,12 +240,12 @@
     <!-- feather icon js-->
     <script src="assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
-
+    <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.buttons.min.js"></script>
+    <script src="assets/js/buttons.print.min.js"></script>
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
 
-    <!--Customizer admin-->
-    <!-- <script src="assets/js/admin-customizer.js"></script> -->
 
     <!-- lazyload js-->
     <script src="assets/js/lazysizes.min.js"></script>
@@ -201,7 +255,22 @@
 
     <!--script admin-->
     <script src="assets/js/admin-script.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+            $('#exampletwo').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+        });
+    </script>
 </body>
 
 </html>

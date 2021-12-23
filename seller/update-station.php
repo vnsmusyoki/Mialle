@@ -1,25 +1,5 @@
-<?php include 'customer.php'; ?>
-<?php $product_name =  $product_price = $product_description = $message = '';
-if (isset($_GET['station'])) {
-    $stationid = $_GET['station'];
-    $pickpoint = "SELECT * FROM pickup_points  WHERE `pickup_point_id`='$stationid' ";
-    $querypickpoint = mysqli_query($conn, $pickpoint);
-    $querypickpointrows = mysqli_num_rows($querypickpoint);
-    if ($querypickpointrows >= 1) {
-        while ($fetch = mysqli_fetch_assoc($querypickpoint)) {
-            $globalshopname = $fetch['pickup_point_shop_name'];
-            $globallocation = $fetch['pickup_point_location'];
-            $globalpointid = $fetch['pickup_point_id'];
+<?php include 'seller.php'; ?>
 
-
-            global $globalpointid;
-        }
-    }
-} else {
-    echo "<script>window.location.replace('my-products.php');</script>";
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +11,7 @@ if (isset($_GET['station'])) {
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - Upload New Pick Point Stations</title>
+    <title>Mialle - Edit Product</title>
 
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/fontawesome.css">
@@ -41,7 +21,7 @@ if (isset($_GET['station'])) {
 
     <!-- Themify icon-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/themify-icons.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/datatables.css">
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
 
@@ -99,8 +79,8 @@ if (isset($_GET['station'])) {
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="page-header-left">
-                                    <h3>Pick Up Point
-                                        <small>Upload New Station</small>
+                                    <h3>Product List
+                                        <small>Sold Products</small>
                                     </h3>
                                 </div>
                             </div>
@@ -108,7 +88,7 @@ if (isset($_GET['station'])) {
                                 <ol class="breadcrumb pull-right">
                                     <li class="breadcrumb-item"><a href="index.php"><i data-feather="home"></i></a></li>
                                     <li class="breadcrumb-item">Products</li>
-                                    <li class="breadcrumb-item active">Upload New Station</li>
+                                    <li class="breadcrumb-item active">Sold Product</li>
                                 </ol>
                             </div>
                         </div>
@@ -118,65 +98,86 @@ if (isset($_GET['station'])) {
 
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="row products-admin ratio_asos">
-                        <div class="col-xl-12 col-sm-12">
+
+                    <div class="row">
+                        <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-body product-box">
-                                    <form action="" enctype="multipart/form-data" method="POST" action="">
-                                        <?php
-                                        if (isset($_POST["uploadproduct"])) {
+                                <div class="card-header">
+                                    <h5>Sold Products</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="example">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th>Name</th>
+                                                <th>Category</th>
+                                                <th>Sub Category</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
                                             include '../db-connection.php';
+                                            $email_username = $_SESSION['seller'];
+                                            $checkemail = "SELECT *  FROM `login` WHERE `login_username`= '$email_username'";
+                                            $queryemail = mysqli_query($conn, $checkemail);
+                                            $checkemailrows = mysqli_num_rows($queryemail);
+                                            if ($checkemailrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryemail)) {
+                                                    $globalusername = $fetch['login_username'];
+                                                    $globalloggedinid = $fetch['login_id'];
+                                                    $checkcustomer = "SELECT *  FROM `seller` WHERE `seller_login_id` = '$globalloggedinid'";
+                                                    $querycustomer = mysqli_query($conn, $checkcustomer);
 
-                                            $shopname = mysqli_real_escape_string($conn, $_POST['shop_name']);
-                                            $location = mysqli_real_escape_string($conn, $_POST['location']);
-                                            if (empty($shopname) || empty($location)) {
-                                                echo $message = "
-                                                <script>
-                                                    toastr.error('Please Provide all the details');
-                                                </script>
-                                            ";
-                                            } else if (!preg_match("/^[a-zA-z0-9 ]*$/", $shopname)) {
-                                                $message = "
-                                                    <script>
-                                                        toastr.error('Provided an invalid shop name');
-                                                    </script>
-                                                ";
-                                            } else {
-                                                $checklocations = "UPDATE  `pickup_points` SET `pickup_point_location`='$location',`pickup_point_shop_name`='$shopname'  WHERE `pickup_point_id`='$globalpointid'";
-                                                $querylocations = mysqli_query($conn, $checklocations);
-                                                if ($querylocations >= 1) {
-                                                    $message = "
-                                                    <script>
-                                                        toastr.error('You has been  updated successfully');
-                                                    </script>
-                                                ";
-                                                echo "<script>window.location.replace('my-checkpoint.php');</script>";
-                                                } 
+                                                    while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
+                                                        $globalfirstname = $fetchcustomer['seller_first_name'];
+                                                        $globallastname = $fetchcustomer['seller_last_name'];
+                                                        $globalcontact = $fetchcustomer['seller_mobile'];
+                                                        $globalemail = $fetchcustomer['seller_email'];
+                                                        $globallocation = $fetchcustomer['seller_location'];
+                                                        $globaluserid = $fetchcustomer['seller_login_id'];
+                                                        $globalsellerid = $fetchcustomer['seller_id'];
+                                                        $checkproducts = "SELECT * FROM `order_details` WHERE `product_user_id` = '$globalsellerid' AND `product_status`='sold'";
+                                                        $queryproducts = mysqli_query($conn, $checkproducts);
+                                                        $checksoldrows = mysqli_num_rows($queryproducts);
+                                                        if ($checksoldrows >= 1) {
+                                                            while ($fetchproduct = mysqli_fetch_assoc($querycustomer)) {
+                                                                $productname = $fetchproduct['product_name'];
+                                                                $productprice = $fetchproduct['product_price'];
+                                                                $productpicture = $fetchproduct['product_images'];
+                                                                $productcategory = $fetchproduct['product_category_id'];
+                                                                $productsubcategory = $fetchproduct['product_sub_category_id'];
+
+                                                                $checkcat = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$productsubcategory'";
+                                                                $queryc = mysqli_query($conn, $checkcat);
+                                                                while ($fetchsubcategory = mysqli_fetch_assoc($queryc)) {
+                                                                    $subcategoryname = $fetchsubcategory['sub_category_name'];
+                                                                }
+                                                                $checkcategories = "SELECT * FROM `categories` WHERE `category_id`='$productcategory'";
+                                                                $querycategory = mysqli_query($conn, $checkcategories);
+                                                                while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
+                                                                    $categoryname = $fetchcategory['category_name'];
+                                                                }
+                                                                echo "
+                                                        <td><img src='../products/$productpicture' style='height:100px;'></td>
+                                                        <td>Kshs. $productprice</td>
+                                                        <td>$productname</td>
+                                                        <td>$categoryname</td>
+                                                        <td>$subcategoryname</td>
+                                                    ";
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
-                                        }
-                                        ?>
-                                        <?php echo $message ?>
-                                        <div class="form-row row">
-                                            <div class="col-md-6 mb-4">
-                                                <label for="name">Shop Name</label>
-                                                <input type="text" class="form-control" id="fname" placeholder="Write Shop Name here" name="shop_name" style="text-transform:capitalize;">
-                                            </div>
-                                            <br>
-                                            <div class="col-md-6 mb-4">
-                                                <label for="review">Location</label>
-                                                <select name="location" id="" class="form-control">
-                                                    <option value="">select Location</option>
-                                                    <option value="Kisumu">Kisumu</option>
-                                                    <option value="Nairobi">Nairobi</option>
-                                                    <option value="Mombasa">Mombasa</option>
-                                                </select>
-                                            </div>
-                                            <br>
-                                        </div>
 
-                                        <br>
-                                        <button type="submit" class="btn btn-solid w-auto" name="uploadproduct">Upload Pickup Point</button>
-                                    </form>
+
+
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +202,10 @@ if (isset($_GET['station'])) {
     <!-- feather icon js-->
     <script src="assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
-
+    <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.buttons.min.js"></script>
+    <script src="assets/js/buttons.print.min.js"></script>
+    <script src="assets/js/datatables/custom-basic.js"></script>
     <!-- Sidebar jquery-->
     <script src="assets/js/sidebar-menu.js"></script>
 
@@ -216,7 +220,22 @@ if (isset($_GET['station'])) {
 
     <!--script admin-->
     <script src="assets/js/admin-script.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+            $('#exampletwo').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+        });
+    </script>
 </body>
 
 </html>
