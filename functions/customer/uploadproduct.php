@@ -78,8 +78,9 @@ if (empty($product_name) || empty($product_price) || empty($product_category) ||
                             global $globalsellerid;
                         }
                     }
-                 $uploadimage = "INSERT INTO `products`(`product_name`, `product_description`, `product_price`, `product_user_id`, `product_images`, `product_category_id`, `product_sub_category_id`) VALUES ('$product_name', '$product_description','$product_price','$globalsellerid','$filenamenew','$product_category','$product_sub_category')";
-                    $queryuploadimage = mysqli_query($conn, $uploadimage);
+          
+             $uploadproduct = "INSERT INTO `products`(`product_name`, `product_description`, `product_price`, `product_user_id`, `product_images`, `product_category_id`, `product_sub_category_id`, `product_status`) VALUES ('$product_name', '$product_description','$product_price','$globalsellerid','$filenamenew','$product_category','$product_sub_category','available')";
+                    $queryuploadimage = mysqli_query($conn, $uploadproduct);
                     if ($queryuploadimage) {
                         $message = "
                                 <script>

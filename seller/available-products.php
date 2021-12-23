@@ -1,5 +1,5 @@
 <?php
-include 'buyer.php';
+include 'seller.php';
 
 
 ?>
@@ -57,7 +57,7 @@ include 'buyer.php';
                     <div class="sidebar-user text-center">
                         <div><img class="img-60 rounded-circle blur-up lazyloaded" src="assets/images/dashboard/man.png" alt="#">
                         </div>
-                        <h6 class="mt-3 f-14"><?php echo $globalfullname; ?></h6>
+                        <h6 class="mt-3 f-14"><?php echo $globalname; ?></h6>
                         <p><?php echo $globalemail; ?></p>
                     </div>
                     <?php include 'sidebar.php'; ?>
@@ -90,32 +90,47 @@ include 'buyer.php';
                         </div>
                     </div>
                 </div>
-           
+                <!-- Container-fluid Ends-->
+                <?php
+                if (isset($_GET['productuploaded'])) {
+                    $msg = $_GET['productuploaded'];
+                    if ($msg == "success") {
+                        $messagenow = "
+                        <script>
+                        toastr.success('Product uploaded successfully.');
+                    </script>";
+                    }
+                    echo $messagenow;
+                }
+
+                ?>
+                <!-- Container-fluid starts-->
                 <div class="container-fluid">
                     <div class="row products-admin ratio_asos">
                         <?php
-                        $email_username = $_SESSION['buyer'];
-                        $checkemail = "SELECT *  FROM `login` WHERE `login_username` = '$email_username' ";
+                        $email_username = $_SESSION['seller'];
+                        $checkemail = "SELECT *  FROM `login` WHERE  `login_username`= '$email_username'";
                         $queryemail = mysqli_query($conn, $checkemail);
                         $checkemailrows = mysqli_num_rows($queryemail);
                         if ($checkemailrows >= 1) {
                             while ($fetch = mysqli_fetch_assoc($queryemail)) {
                                 $globalusername = $fetch['login_username']; 
                                 $globalloggedinid = $fetch['login_id'];
-                                $checkcustomer = "SELECT *  FROM `buyer` WHERE `buyer_login_id` = '$globalloggedinid'";
+                                $checkcustomer = "SELECT *  FROM `seller` WHERE `seller_login_id` = '$globalloggedinid'";
                                 $querycustomer = mysqli_query($conn, $checkcustomer);
-
+                                 
                                 while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
-                                    $globalfirstname = $fetchcustomer['buyer_first_name'];
-                                    $globallastname = $fetchcustomer['buyer_last_name'];
-                                    $globalcontact = $fetchcustomer['buyer_mobile'];
-                                    $globalemail = $fetchcustomer['buyer_email'];
-                                    $globallocation = $fetchcustomer['buyer_location'];
-                                    $globaluserid = $fetchcustomer['buyer_login_id'];
+                                    $globalfirstname = $fetchcustomer['seller_first_name'];
+                                    $globallastname = $fetchcustomer['seller_last_name'];
+                                    $globalcontact = $fetchcustomer['seller_mobile'];
+                                    $globalemail = $fetchcustomer['seller_email'];
+                                    $globallocation = $fetchcustomer['seller_location'];
+                                    $globaluserid = $fetchcustomer['seller_login_id'];
+                                    $globalsellerid = $fetchcustomer['seller_id'];
                                 }
                     
-                                $globalfullname = $globalfirstname . " " . $globallastname;
-                                global $globalfullname;
+                                $globalname = $globalfirstname . " " . $globallastname;
+                                global $globalname;
                                 global $globalusername;
                                 global $globalemail;
                                 global $globalname;
@@ -123,10 +138,10 @@ include 'buyer.php';
                                 global $globallocation;
                                 global $globalloggedinid;
                                 global $globaluserid;
+                                global $globalsellerid;
                             }
                         }
-                        // $products = "SELECT * FROM `products` WHERE `product_user_id` != '$globaluserid'";
-                        $products = "SELECT * FROM `products` WHERE `product_status`='available'";
+                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalsellerid' AND `product_status`='available'";
                         $queryproducts = mysqli_query($conn, $products);
                         $queryproductsrows = mysqli_num_rows($queryproducts);
                         if ($queryproductsrows >= 1) {
@@ -155,7 +170,14 @@ include 'buyer.php';
                                             <div class='front'>
                                                 <a href='product-details.php?product=$productid'><img src='../products/$image' class='img-fluid blur-up lazyload bg-img' alt=''></a>
                                                 <div class='product-hover'>
-                                                     
+                                                    <ul>
+                                                        <li>
+                                                            <a href='edit-product.php?product=$productid' class='btn' title='Edit Product'><i class='ti-pencil-alt'></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href='delete-product.php?product=$productid' class='btn'  title='Delete Product'><i class='ti-trash'></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,7 +188,8 @@ include 'buyer.php';
                                             </a>
                                             <h4>Kshs. $price </h4>
                                              <h6>$categoryname - $subcategoryname</h6>
-                                             <a href='product-details.php?product=$productid' class='btn btn-warning'>Shop Now</a>
+                                             <a href='feedbacks.php?product=$productid' class='btn btn-warning'>Feed backs</a>
+                                             <a href='buyers-list.php?product=$productid' class='btn btn-warning mt-2'>Buyers</a>
                                         </div>
                                     </div>
                                 </div>

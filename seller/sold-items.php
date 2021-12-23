@@ -80,7 +80,7 @@
                             <div class="col-lg-6">
                                 <div class="page-header-left">
                                     <h3>Product List
-                                        <small>Sold  Products</small>
+                                        <small>Sold Products</small>
                                     </h3>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
 
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                  
+
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
@@ -118,64 +118,65 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                    include '../db-connection.php';
-                                    $email_username = $_SESSION['seller'];
-                                    $checkemail = "SELECT *  FROM `login` WHERE `login_username`= '$email_username'";
-                                    $queryemail = mysqli_query($conn, $checkemail);
-                                    $checkemailrows = mysqli_num_rows($queryemail);
-                                    if ($checkemailrows >= 1) {
-                                        while ($fetch = mysqli_fetch_assoc($queryemail)) {
-                                            $globalusername = $fetch['login_username'];
-                                            $globalloggedinid = $fetch['login_id'];
-                                            $checkcustomer = "SELECT *  FROM `seller` WHERE `seller_login_id` = '$globalloggedinid'";
-                                            $querycustomer = mysqli_query($conn, $checkcustomer);
+                                            <?php
+                                            include '../db-connection.php';
+                                            $email_username = $_SESSION['seller'];
+                                            $checkemail = "SELECT *  FROM `login` WHERE `login_username`= '$email_username'";
+                                            $queryemail = mysqli_query($conn, $checkemail);
+                                            $checkemailrows = mysqli_num_rows($queryemail);
+                                            if ($checkemailrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryemail)) {
+                                                    $globalusername = $fetch['login_username'];
+                                                    $globalloggedinid = $fetch['login_id'];
+                                                    $checkcustomer = "SELECT *  FROM `seller` WHERE `seller_login_id` = '$globalloggedinid'";
+                                                    $querycustomer = mysqli_query($conn, $checkcustomer);
 
-                                            while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
-                                                $globalfirstname = $fetchcustomer['seller_first_name'];
-                                                $globallastname = $fetchcustomer['seller_last_name'];
-                                                $globalcontact = $fetchcustomer['seller_mobile'];
-                                                $globalemail = $fetchcustomer['seller_email'];
-                                                $globallocation = $fetchcustomer['seller_location'];
-                                                $globaluserid = $fetchcustomer['seller_login_id'];
-                                                $globalsellerid = $fetchcustomer['seller_id'];
-                                            }
+                                                    while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
+                                                        $globalfirstname = $fetchcustomer['seller_first_name'];
+                                                        $globallastname = $fetchcustomer['seller_last_name'];
+                                                        $globalcontact = $fetchcustomer['seller_mobile'];
+                                                        $globalemail = $fetchcustomer['seller_email'];
+                                                        $globallocation = $fetchcustomer['seller_location'];
+                                                        $globaluserid = $fetchcustomer['seller_login_id'];
+                                                        $globalsellerid = $fetchcustomer['seller_id'];
+                                                    }
 
-                                            $checkproducts = "SELECT *  FROM `products` WHERE `product_user_id` = '$globalsellerid' AND `product_status`='sold'";
-                                            $querycustomer = mysqli_query($conn, $checkproducts);
+                                                    $checkproducts = "SELECT *  FROM `products` WHERE `product_user_id` = '$globalsellerid' AND `product_status`='sold'";
+                                                    $querycustomer = mysqli_query($conn, $checkproducts);
 
-                                            while ($fetchproduct = mysqli_fetch_assoc($querycustomer)) {
-                                                $productname = $fetchproduct['product_name'];
-                                                $productprice = $fetchproduct['product_price'];
-                                                $productpicture = $fetchproduct['product_images'];
-                                                $productcategory = $fetchproduct['product_category_id'];
-                                                $productsubcategory = $fetchproduct['product_sub_category_id'];
+                                                    while ($fetchproduct = mysqli_fetch_assoc($querycustomer)) {
+                                                        $productname = $fetchproduct['product_name'];
+                                                        $productprice = $fetchproduct['product_price'];
+                                                        $productpicture = $fetchproduct['product_images'];
+                                                        $productcategory = $fetchproduct['product_category_id'];
+                                                        $productsubcategory = $fetchproduct['product_sub_category_id'];
 
-                                                $checkcat = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$productsubcategory'";
-                                                $queryc = mysqli_query($conn, $checkcat);
-                                                while ($fetchsubcategory = mysqli_fetch_assoc($queryc)) {
-                                                    $subcategoryname = $fetchsubcategory['sub_category_name'];
-                                                }
-                                                $checkcategories = "SELECT * FROM `categories` WHERE `category_id`='$productcategory'";
-                                                $querycategory = mysqli_query($conn, $checkcategories);
-                                                while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
-                                                    $categoryname = $fetchcategory['category_name'];
-                                                }
+                                                        $checkcat = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$productsubcategory'";
+                                                        $queryc = mysqli_query($conn, $checkcat);
+                                                        while ($fetchsubcategory = mysqli_fetch_assoc($queryc)) {
+                                                            $subcategoryname = $fetchsubcategory['sub_category_name'];
+                                                        }
+                                                        $checkcategories = "SELECT * FROM `categories` WHERE `category_id`='$productcategory'";
+                                                        $querycategory = mysqli_query($conn, $checkcategories);
+                                                        while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
+                                                            $categoryname = $fetchcategory['category_name'];
+                                                        }
 
-                                                echo "
-                                                    <td><img src='../products/$productpicture' style='height:100px;'></td>
+                                                        echo "
+                                                <tr><td><img src='../products/$productpicture' style='height:100px;'></td>
                                                     <td>Kshs. $productprice</td>
                                                     <td>$productname</td>
                                                     <td>$categoryname</td>
-                                                    <td>$subcategoryname</td>
+                                                    <td>$subcategoryname</td></tr>
+                                                    
                                                 ";
+                                                    }
+                                                }
                                             }
-                                        }
-                                    }
 
 
 
-                                    ?>
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

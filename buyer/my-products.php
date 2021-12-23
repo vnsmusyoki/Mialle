@@ -137,7 +137,7 @@ include 'customer.php';
                                 global $globaluserid;
                             }
                         }
-                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globaluserid'";
+                        $products = "SELECT * FROM `products` WHERE `product_status` = 'available'";
                         $queryproducts = mysqli_query($conn, $products);
                         $queryproductsrows = mysqli_num_rows($queryproducts);
                         if ($queryproductsrows >= 1) {

@@ -151,19 +151,17 @@ if (isset($_GET['product'])) {
                                     $checkemailrows = mysqli_num_rows($queryemail);
                                     if ($checkemailrows >= 1) {
                                         while ($fetch = mysqli_fetch_assoc($queryemail)) {
-                                            $globalusername = $fetch['login_username']; 
+                                            $globalusername = $fetch['login_username'];
                                             $globalloggedinid = $fetch['login_id'];
-                                            $checkcustomer = "SELECT *  FROM `users` WHERE `user_login_id` = '$globalloggedinid'";
+                                            $checkcustomer = "SELECT *  FROM `buyer` WHERE `buyer_id` = '$globalloggedinid'";
                                             $querycustomer = mysqli_query($conn, $checkcustomer);
 
                                             while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
-                                                $globalname = $fetchcustomer['user_name'];
-                                                $globalcontact = $fetchcustomer['user_contact'];
-                                                $globallocation = $fetchcustomer['user_location'];
-                                                $globaluserid = $fetchcustomer['user_id'];
+                                                $globalname = $fetchcustomer['buyer_first_name'] . " " . $fetchcustomer['buyer_last_name'];
+                                                $globalcontact = $fetchcustomer['buyer_mobile'];
+                                                $globallocation = $fetchcustomer['buyer_location'];
+                                                $globaluserid = $fetchcustomer['buyer_id'];
                                             }
-
-
                                             global $globalusername;
                                             global $globalemail;
                                             global $globalname;
@@ -173,14 +171,14 @@ if (isset($_GET['product'])) {
                                             global $globaluserid;
                                         }
                                     }
-                                 
-                                        echo "
+
+                                    echo "
                                         <div class='m-t-15'>
                                         <a href='add-to-cart.php?product=$globalproductid' class='btn btn-primary m-r-10' type='button'>Add To Cart</a>
                                          
                                     </div>
                                         ";
-                                    
+
 
 
                                     ?>

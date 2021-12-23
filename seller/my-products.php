@@ -141,7 +141,7 @@ include 'seller.php';
                                 global $globalsellerid;
                             }
                         }
-                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalsellerid' AND `product_status`='available'";
+                        $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalsellerid' ";
                         $queryproducts = mysqli_query($conn, $products);
                         $queryproductsrows = mysqli_num_rows($queryproducts);
                         if ($queryproductsrows >= 1) {

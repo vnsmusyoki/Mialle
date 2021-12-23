@@ -8,6 +8,11 @@
                 </a>
             </li>
             <li>
+                <a href="available-products.php"><i class="fa fa-circle"></i>
+                    <span>Available Products</span> <i class="fa fa-angle-right pull-right"></i>
+                </a>
+            </li>
+            <li>
                 <a href="upload-product.php"><i class="fa fa-circle"></i>
                     <span>Upload New </span> <i class="fa fa-angle-right pull-right"></i>
                 </a>
