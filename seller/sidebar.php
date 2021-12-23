@@ -27,9 +27,9 @@
             <li><a href="my-checkpoint.php"><i class="fa fa-circle"></i>My Station</a></li>
         </ul>
     </li> -->
-    <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Shop Now</span><i class="fa fa-angle-right pull-right"></i></a>
+    <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Sold Items</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
-            <li><a href="shop-now.php"><i class="fa fa-circle"></i>All Products</a></li>
+            <li><a href="sold-items.php"><i class="fa fa-circle"></i>All Products</a></li>
         </ul>
     </li>
     

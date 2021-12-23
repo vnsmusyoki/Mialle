@@ -164,6 +164,7 @@ if (isset($_GET['product'])) {
                                                 <th>Name</th>
                                                 <th>Contact</th> 
                                                 <th>Location</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -187,14 +188,15 @@ if (isset($_GET['product'])) {
                                                             $name = $fetchcategory['buyer_first_name']. " ".$fetchcategory['buyer_last_name'];
                                                             $location = $fetchcategory['buyer_location'];
                                                             $contact = $fetchcategory['buyer_mobile']; 
+                                                            
                                                             echo "
                                                     <tr>
                                                         
                                                         <td>$name</td>
                                                         <td>$contact</td>
                                                         <td>$location</td>
-                                                         
-
+                                                        <td><a href='sell-to-buyer.php?orderid=$orderid&buyer=$buyerid&productid=$globalproductid' class='btn btn-primary'>Sell To Buyer  </a></td>
+                                                        
                                                     </tr>";
                                                         }
                                                     }
