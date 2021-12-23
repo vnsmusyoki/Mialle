@@ -1,5 +1,5 @@
 <?php
-include 'customer.php';
+include 'admin.php';
 
 
 ?>

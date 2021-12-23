@@ -1,5 +1,5 @@
 <?php
-include 'customer.php';
+include 'admin.php';
 
 
 ?>
@@ -14,7 +14,7 @@ include 'customer.php';
 
     <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title>Mialle - My Products</title>
+    <title>Mialle - My Categories</title>
 
 
     <!-- Font Awesome-->

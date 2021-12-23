@@ -5,22 +5,21 @@ if (!isset($_SESSION['admin'])) {
 } else {
     include '../db-connection.php';
     $email_username = $_SESSION['admin'];
-    $checkemail = "SELECT *  FROM `login` WHERE `login_email` = '$email_username' OR `login_username`= '$email_username'";
+    $checkemail = "SELECT *  FROM `login` WHERE `login_username`= '$email_username'";
     $queryemail = mysqli_query($conn, $checkemail);
     $checkemailrows = mysqli_num_rows($queryemail);
     if ($checkemailrows >= 1) {
         while ($fetch = mysqli_fetch_assoc($queryemail)) {
-            $globalusername = $fetch['login_username'];
-            $globalemail = $fetch['login_email'];
+            $globalusername = $fetch['login_username']; 
             $globalloggedinid = $fetch['login_id'];
-            $checkcustomer = "SELECT *  FROM `users` WHERE `login_user_id` = '$globalloggedinid'";
+            $checkcustomer = "SELECT *  FROM `admin` WHERE `admin_login_id` = '$globalloggedinid'";
             $querycustomer = mysqli_query($conn, $checkcustomer);
             if ($querycustomer >= 1) {
                 while ($fetchcustomer = mysqli_fetch_assoc($querycustomer)) {
-                    $globalname = $fetchcustomer['user_name'];
-                    $globalcontact = $fetchcustomer['user_contact'];
-                    $globallocation = $fetchcustomer['user_location'];
-                    $globaluserid = $fetchcustomer['user_id'];
+                    $globalname = $fetchcustomer['admin_first_name']." ".$fetchcustomer['admin_last_name'];
+                    $globalcontact = $fetchcustomer['admin_mobile'];
+                    $globalemail = $fetchcustomer['admin_email'];
+                    $globaluserid = $fetchcustomer['admin_id'];
                 }
             }
 

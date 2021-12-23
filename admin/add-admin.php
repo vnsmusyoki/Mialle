@@ -1,4 +1,4 @@
-<?php include 'customer.php'; ?>
+<?php include 'admin.php'; ?>
 <?php $first_name =  $last_name = $mobile_number = $email_address = $username = $password = $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">

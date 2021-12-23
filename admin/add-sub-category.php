@@ -1,4 +1,4 @@
-<?php include 'customer.php'; ?>
+<?php include 'admin.php'; ?>
 <?php $category_name  = $sub_category_description = $message = ''; ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,7 +1,7 @@
 <ul class="sidebar-menu">
     <li><a class="sidebar-header" href="dashboard.php"><i data-feather="home"></i><span>Dashboard</span></a></li>
  
-    <li><a class="sidebar-header" href="pick-points.php"><i data-feather="dollar-sign"></i><span>My Pick Points</span><i class="fa fa-angle-right pull-right"></i></a> </li>
+    <!-- <li><a class="sidebar-header" href="pick-points.php"><i data-feather="dollar-sign"></i><span>My Pick Points</span><i class="fa fa-angle-right pull-right"></i></a> </li>
     <li><a class="sidebar-header" href="shopping-cart.php"><i data-feather="camera"></i><span>Shopping Cart</span></a></li>
     <li><a class="sidebar-header" href="#"><i data-feather="align-left"></i><span>Pick up Point</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
@@ -13,7 +13,7 @@
         <ul class="sidebar-submenu">
             <li><a href="shop-now.php"><i class="fa fa-circle"></i>All Products</a></li>
         </ul>
-    </li>
+    </li> -->
     <li><a class="sidebar-header" href=""><i data-feather="chrome"></i><span>Categories</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
             <li><a href="add-category.php"><i class="fa fa-circle"></i>Add New</a></li>
@@ -31,7 +31,7 @@
     <li><a class="sidebar-header" href=""><i data-feather="users"></i><span>Admin</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
             <li><a href="add-admin.php"><i class="fa fa-circle"></i>Add New</a></li>
-            <li><a href="all-admins.php"><i class="fa fa-circle"></i>SubCategory List</a></li>
+            <li><a href="all-admins.php"><i class="fa fa-circle"></i>Admin List</a></li>
              
         </ul>
     </li>

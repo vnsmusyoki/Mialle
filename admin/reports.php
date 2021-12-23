@@ -1,5 +1,5 @@
 <?php
-include 'customer.php';
+include 'admin.php';
 
 
 ?>
@@ -108,68 +108,38 @@ include 'customer.php';
                 ?>
                 <!-- Container-fluid starts-->
                 <div class="container-fluid">
-                    <div class="row">
+                <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Manage Order</h5>
+                                    <h5>All Categories</h5>
                                 </div>
                                 <div class="card-body order-datatable">
                                     <table class="display" id="example">
                                         <thead>
-                                            <tr>
-                                                <th>Product Image</th>
-                                                <th>Name</th>
-                                                <th>Price</th>
-                                                <th>Product Category</th>
-                                                <th>Product SUbCategory</th>
-                                                <th>Contact Seller</th>
+                                            <tr> 
+                                                <th>Category Name</th>
+                                                <th>Description</th> 
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
 
-                                            $products = "SELECT * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_details_order_id WHERE orders.order_buyer_user_id='$globalloggedinid' ";
+                                            $products = "SELECT * FROM categories ";
                                             $queryproducts = mysqli_query($conn, $products);
                                             $queryproductsrows = mysqli_num_rows($queryproducts);
                                             if ($queryproductsrows >= 1) {
                                                 while ($fetch = mysqli_fetch_assoc($queryproducts)) {
-                                                    $orderref = $fetch['order_ref'];
-                                                    $date = $fetch['order_date'];
-                                                    $orderid = $fetch['order_id'];
-                                                    $buyer = $fetch['order_buyer_user_id'];
-                                                    $checkcategory = "SELECT * FROM `order_details` WHERE `order_details_order_id`='$orderid'";
-                                                    $querycategory = mysqli_query($conn, $checkcategory);
-                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
-                                                        $productfetchid = $fetchsubcategory['order_details_product_id'];
-                                                    }
-                                                    $checkproduct = "SELECT * FROM `products` WHERE `product_id`='$productfetchid'";
-                                                    $queryproduct = mysqli_query($conn, $checkproduct);
-                                                    while ($fetchcategory = mysqli_fetch_assoc($queryproduct)) {
-                                                        $productpic = $fetchcategory['product_images'];
-                                                        $name = $fetchcategory['product_name'];
-                                                        $price = $fetchcategory['product_price'];
-                                                        $categoryid = $fetchcategory['product_category_id'];
-                                                        $subcategoryid = $fetchcategory['product_sub_category_id'];
-                                                    }
-                                                    $checksubcategory = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$subcategoryid'";
-                                                    $querysubcategory = mysqli_query($conn, $checksubcategory);
-                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querysubcategory)) {
-                                                        $subcategoryname = $fetchsubcategory['sub_category_name'];
-                                                    }
-                                                    $checkcat = "SELECT * FROM `categories` WHERE `category_id`='$categoryid'";
-                                                    $querycat = mysqli_query($conn, $checkcat);
-                                                    while ($fetchcategory = mysqli_fetch_assoc($querycat)) {
-                                                        $categoryname = $fetchcategory['category_name'];
-                                                    }
+                                                    $catid = $fetch['category_id'];
+                                                    $name = $fetch['category_name'];
+                                                    $desc = $fetch['category_desc']; 
+                                                   
                                                     echo "
                                                     <tr>
-                                                        <td><a href=''><img src='../products/$productpic' class='img-fluid' alt='' style='height:100px;'></a></td>
+                                                  
                                                         <td>$name</td>
-                                                        <td>Kshs. $price</td>
-                                                        <td>$categoryname</td>
-                                                        <td>$subcategoryname</td>
-                                                        <td><a href='contact-product-owner.php?cartitem=$productfetchid' class='btn btn-success'>07XXXXXXX</a></td>
+                                                        <td>$desc</td> 
                                                          
                                                     </tr>";
                                                 }
@@ -184,58 +154,106 @@ include 'customer.php';
 
                 </div>
                 <div class="container-fluid">
-                    <div class="row">
+                <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>My Products</h5>
+                                    <h5>All Sub categories</h5>
                                 </div>
                                 <div class="card-body order-datatable">
                                     <table class="display" id="exampletwo">
                                         <thead>
                                             <tr>
-                                                <th>Product Image</th>
-                                                <th>Name</th>
-                                                <th>Price</th>
-                                                <th>Product Category</th>
-                                                <th>Product SUbCategory</th> 
+                                                <th>Sub Category Name</th>
+                                                <th>Category Name</th>
+                                                <th>Description</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                   
                                             <?php
 
-                                            $products = "SELECT * FROM `products` WHERE `product_user_id` = '$globalloggedinid'";
+                                            $products = "SELECT * FROM sub_categories ";
                                             $queryproducts = mysqli_query($conn, $products);
                                             $queryproductsrows = mysqli_num_rows($queryproducts);
                                             if ($queryproductsrows >= 1) {
                                                 while ($fetch = mysqli_fetch_assoc($queryproducts)) {
-                                                    $name = $fetch['product_name'];
-                                                    $price = $fetch['product_price'];
-                                                    $image = $fetch['product_images'];
-                                                    $productid = $fetch['product_id'];
-                                                    $categoryid = $fetch['product_category_id'];
-                                                    $subcategoryid = $fetch['product_sub_category_id'];
-                                                    $checkcategory = "SELECT * FROM `sub_categories` WHERE `sub_category_id`='$subcategoryid'";
-                                                    $querycategory = mysqli_query($conn, $checkcategory);
-                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
-                                                        $subcategoryname = $fetchsubcategory['sub_category_name'];
-                                                    }
-                                                    $checkcategory = "SELECT * FROM `categories` WHERE `category_id`='$categoryid'";
+                                                    $subcatid = $fetch['sub_category_id'];
+                                                    $name = $fetch['sub_category_name'];
+                                                    $desc = $fetch['sub_category_desc'];
+                                                    $catid = $fetch['sub_category_category_id'];
+                                                    $checkcategory = "SELECT * FROM `categories` WHERE `category_id`='$catid'";
                                                     $querycategory = mysqli_query($conn, $checkcategory);
                                                     while ($fetchcategory = mysqli_fetch_assoc($querycategory)) {
                                                         $categoryname = $fetchcategory['category_name'];
-
-                                                        echo "
-                                                    <tr>
-                                                        <td><a href=''><img src='../products/$image' class='img-fluid' alt='' style='height:100px;'></a></td>
-                                                        <td>$name</td>
-                                                        <td>Kshs. $price</td>
-                                                        <td>$categoryname</td>
-                                                        <td>$subcategoryname</td>
-                                                          
-                                                    </tr>";
                                                     }
+                                                    echo "
+                                                    <tr>
+                                                  
+                                                        <td>$name</td>
+                                                        <td>$categoryname</td>
+                                                        <td>$desc</td> 
+                                                         
+                                                    </tr>";
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+               <!-- Container-fluid starts-->
+               <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Manage Admin</h5>
+                                </div>
+                                <div class="card-body order-datatable">
+                                    <table class="display" id="examplethree">
+                                        <thead>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email Address</th>
+                                                <th>Username </th>
+                                                <th>Phone Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+
+                                            $admins = "SELECT * FROM `admin`";
+                                            $queryadmins = mysqli_query($conn, $admins);
+                                            $queryadminrows = mysqli_num_rows($queryadmins);
+                                            if ($queryadminrows >= 1) {
+                                                while ($fetch = mysqli_fetch_assoc($queryadmins)) {
+                                                    $firstname = $fetch['admin_first_name'];
+                                                    $lastname = $fetch['admin_last_name'];
+                                                    $mobile = $fetch['admin_mobile'];
+                                                    $email = $fetch['admin_email'];
+                                                    $adminloginid = $fetch['admin_login_id'];
+                                                    $checkcategory = "SELECT * FROM `login` WHERE `login_id`='$adminloginid'";
+                                                    $querycategory = mysqli_query($conn, $checkcategory);
+                                                    while ($fetchsubcategory = mysqli_fetch_assoc($querycategory)) {
+                                                        $username = $fetchsubcategory['login_username'];
+                                                    }
+
+                                                    echo "
+                                                    <tr>
+                                                         
+                                                        <td>$firstname</td>
+                                                        <td>$lastname</td>
+                                                        <td>$email</td>
+                                                        <td>$username</td>
+                                                        <td>$mobile</td>
+                                                        
+                                                    </tr>";
                                                 }
                                             }
                                             ?>
@@ -292,6 +310,12 @@ include 'customer.php';
                 ]
             });
             $('#exampletwo').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+            $('#examplethree').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'print'
